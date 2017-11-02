@@ -30,6 +30,7 @@ import java.lang.reflect.InvocationTargetException;
  * class AlteratorFactory
  */
 public class AlteratorFactory {
+	final static Logger logger = LoggerFactory.getLogger(AlteratorFactory.class);
 
     // The parameter Ids should be here
     //public static final int ANY = 0;
@@ -57,15 +58,15 @@ public class AlteratorFactory {
 		Object[] mparams = { om };
 		alt = (Alterator)altConstructor.newInstance(mparams);
 	    } catch (ClassNotFoundException cnfex ) {
-		cnfex.printStackTrace(); // better raise errors
+			logger.error("FATAL error", cnfex); // better raise errors
 	    } catch (NoSuchMethodException nsmex) {
-		nsmex.printStackTrace();
+			logger.error("FATAL error", nsmex);
 	    } catch (InstantiationException ieex) {
-		ieex.printStackTrace();
+			logger.error("FATAL error", ieex);
 	    } catch (IllegalAccessException iaex) {
-		iaex.printStackTrace();
+			logger.error("FATAL error", iaex);
 	    } catch (InvocationTargetException itex) {
-		itex.printStackTrace();
+			logger.error("FATAL error", itex);
 	    }
 	}
 	return alt;

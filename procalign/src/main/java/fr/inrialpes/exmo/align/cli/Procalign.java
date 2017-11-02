@@ -40,7 +40,6 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Properties;
@@ -90,10 +89,11 @@ $Id: Procalign.java 1820 2013-03-06 10:13:00Z euzenat $
     */
 
 public class Procalign {
+	final static Logger logger = LoggerFactory.getLogger(Procalign.class);
 
     public static void testProcalign(String[] args) {
 	try { new Procalign().run( args ); }
-	catch ( Exception ex ) { ex.printStackTrace(); };
+	catch ( Exception ex ) { logger.error("FATAL error", ex); };
     }
 
     public Alignment run(String[] args) throws Exception {
@@ -323,7 +323,7 @@ public class Procalign {
 		} else {
 			try {
 				stream = new FileOutputStream(cont.filename);
-			} catch (Exception ex) {ex.printStackTrace();}
+			} catch (Exception ex) {logger.error("FATAL error", ex);}
 			finally {
 				if (stream != null) {
 					try {
@@ -382,7 +382,7 @@ public class Procalign {
 			} else if ( cont.params.getProperty("debug") != null ) {
 				cont.debug = Integer.parseInt( cont.params.getProperty("debug") );
 			}
-		} catch (Exception ex) {ex.printStackTrace();}
+		} catch (Exception ex) {logger.error("FATAL error", ex);}
 		finally {
 			if (fi != null) {
 				try {

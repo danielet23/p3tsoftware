@@ -9,6 +9,7 @@ import java.io.IOException;
  * class DistFile
  */
 public class DistFile {
+	final static Logger logger = LoggerFactory.getLogger(DistFile.class);
 
 
     public static void testDistFile(String[] args) throws IOException {
@@ -33,7 +34,7 @@ public class DistFile {
 				dist[idx]++;
 				line = br.readLine();
 			}
-		} catch (Exception ex) {ex.printStackTrace();}
+		} catch (Exception ex) {logger.error("FATAL error", ex);}
 		finally {
 			if (br != null) {
 				try {

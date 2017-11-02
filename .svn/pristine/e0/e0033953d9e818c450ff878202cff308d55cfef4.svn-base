@@ -63,7 +63,6 @@ import java.util.Properties;
 public class Skeleton {
 
     String RESTServ = "http://aserv.inrialpes.fr/rest/";
-	final static Logger logger = LoggerFactory.getLogger(Skeleton.class);
 
 
     public static void testSkeleton(String[] args)  {
@@ -84,7 +83,7 @@ public class Skeleton {
 	try {
 	    uri1 = new URI( u1 );
 	    uri2 = new URI( u2 );
-	} catch (URISyntaxException use) { logger.error("FATAL error", use); System.exit(-1); }
+	} catch (URISyntaxException use) { use.printStackTrace(); System.exit(-1); }
 
 	try {
 
@@ -128,7 +127,7 @@ public class Skeleton {
 
 	    // (Sol3) reasoning with distributed semantics (IDDL)
 
-	} catch (Exception e) { logger.error("FATAL error", e); System.exit(-1); }
+	} catch (Exception e) { e.printStackTrace(); System.exit(-1); }
     }
 
     public String getFromURLString( String u, boolean print ){
@@ -147,8 +146,8 @@ public class Skeleton {
 	    }
 	    in.close();
 	}
-	catch ( MalformedURLException mue ) { logger.error("FATAL error", mue); }
-	catch ( IOException mue ) { logger.error("FATAL error", mue);}
+	catch ( MalformedURLException mue ) { mue.printStackTrace(); }
+	catch ( IOException mue ) { mue.printStackTrace(); }
 	return result;
     }
 
@@ -158,9 +157,9 @@ public class Skeleton {
 	try { // Parse the returned stringAS XML
 	    DocumentBuilder parser = getFactory().newDocumentBuilder();
 	    document = parser.parse(new ByteArrayInputStream( found.getBytes() ));
-	} catch ( ParserConfigurationException pce ) { logger.error("FATAL error", pce); }
-	catch ( SAXException se ) { logger.error("FATAL error", se); }
-	catch ( IOException ioe ) { logger.error("FATAL error", ioe); }
+	} catch ( ParserConfigurationException pce ) { pce.printStackTrace(); }
+	catch ( SAXException se ) { se.printStackTrace(); }
+	catch ( IOException ioe ) { ioe.printStackTrace(); }
 
 	try { // Apply the Xpath expression
 	    XPathFactory factory = XPathFactory.newInstance();
@@ -175,7 +174,7 @@ public class Skeleton {
 		    System.out.println(nodes.item(i).getNodeValue()); 
 		}
 	    }
-	} catch (XPathExpressionException xpee) { logger.error("FATAL error", xpee); }
+	} catch (XPathExpressionException xpee) { xpee.printStackTrace(); }
 	return nodes;
     }
 	

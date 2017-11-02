@@ -89,7 +89,7 @@ public class BasicRelation implements Relation {
 		classIndex.put( "~>", nti );
 		classIndex.put( "~&gt;", nti );
 	    } catch ( ClassNotFoundException cnfe ) {
-		cnfe.printStackTrace(); // should never occur
+			logger.error("FATAL error", cnfe); // should never occur
 	    }
 	}
 	return classIndex.get(label);

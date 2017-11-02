@@ -226,7 +226,7 @@ public abstract class ASAbstractCoverageTraversal extends AbstractAlignmentSpace
 					}
 				}
 			} catch (AlignmentException aex) {
-				aex.printStackTrace();
+				logger.error("FATAL error", aex);
 			}
 		}
 		return results;

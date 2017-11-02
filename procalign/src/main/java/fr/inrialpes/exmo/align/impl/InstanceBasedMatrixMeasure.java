@@ -57,6 +57,7 @@ import java.util.Properties;
  */
 
 public abstract class InstanceBasedMatrixMeasure extends MatrixMeasure {
+	final static Logger logger = LoggerFactory.getLogger(InstanceBasedMatrixMeasure.class);
 
     Set<Object>[] classinst1 = null;
     Set<Object>[] classinst2 = null;
@@ -87,9 +88,9 @@ public abstract class InstanceBasedMatrixMeasure extends MatrixMeasure {
 		classinst2[ classlist2.get( cl2 ).intValue() ] = ontology2.getInstances( cl2, OntologyFactory.LOCAL, OntologyFactory.FULL, OntologyFactory.NAMED );
 	    }
 	} catch (OntowrapException owex) {
-	    owex.printStackTrace();
+		logger.error("FATAL error", owex);
 	} catch (AlignmentException alex) {
-	    alex.printStackTrace();
+		logger.error("FATAL error", alex);
 	}
 
     }

@@ -66,8 +66,7 @@ import java.util.Properties;
  * class BasicParameters
  */
 public class BasicParameters extends Properties implements Parameters, Cloneable {
-	final static Logger logger = LoggerFactory.getLogger(BasicParameters.class);
-
+ 
     static final long serialVersionUID = 400L;
 
 	/**
@@ -177,7 +176,7 @@ public class BasicParameters extends Properties implements Parameters, Cloneable
     public static BasicParameters read( BasicParameters p, String filename ){
 	try {
 	    // open the stream
-	    DocumentBuilderFactory docBuilderFactory = getFactory();
+	    DocumentBuilderFactory docBuilderFactory = getfactory();
 	    DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
 	    Document doc = docBuilder.parse(new File(filename));
 
@@ -200,7 +199,7 @@ public class BasicParameters extends Properties implements Parameters, Cloneable
 	} catch (SAXException e) {
 	    Exception x = e.getException();
 	    ((x == null) ? e : x).printStackTrace();
-	} catch (Throwable t) {	logger.error("FATAL error", t); }
+	} catch (Throwable t) {	t.printStackTrace(); }
 
 	return p;
     }
@@ -212,7 +211,7 @@ public class BasicParameters extends Properties implements Parameters, Cloneable
     public Object clone() {
 	return super.clone();
     }
-
+	
 private static DocumentBuilderFactory getFactory() throws ParserConfigurationException {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setFeature("http://javax.xml.XMLConstants/feature/secure-processing", true);
@@ -223,5 +222,5 @@ private static DocumentBuilderFactory getFactory() throws ParserConfigurationExc
 
 		return dbf;
 	}
-
+	
 }

@@ -176,7 +176,7 @@ public class JWNLDistances {
 		    case StreamTokenizer.TT_WORD : str += st.sval; break;
 		    }
 		}	
-	} catch (Exception ex) {ex.printStackTrace();} 
+	} catch (Exception ex) {logger.error("FATAL error", ex);}
 	finally {
 		if (rd != null) {
             try {
@@ -217,7 +217,7 @@ public class JWNLDistances {
             // Lookup for first string
             index = dictionary.lookupIndexWord(POS.NOUN,s1);
         } catch (Exception ex) {
-            ex.printStackTrace();
+			logger.error("FATAL error", ex);
             System.exit(-1);
         }
         // if found in the dictionary
@@ -226,7 +226,7 @@ public class JWNLDistances {
                 // get the groups of synonyms for each sense
                 Syno = index.getSenses();
             } catch (JWNLException e) {
-                e.printStackTrace();
+				logger.error("FATAL error", e);
             }
             // number of senses for the word s1
             synonymNb = index.getSenseCount();
@@ -412,7 +412,7 @@ public class JWNLDistances {
 		// Tokenize gloss
 		st = tokenizeGloss( gloss );
 	    } catch ( IOException ioex ) {
-		ioex.printStackTrace(); // should never occur
+			logger.error("FATAL error", ioex); // should never occur
 	    }
 	    // This uses our home-made tokenizer (rather use Lucene maybe)
 	    //OLD: st = StringDistances.tokenize( gloss );
@@ -908,7 +908,7 @@ public class JWNLDistances {
 					index = dictionary.lookupIndexWord(POS.VERB, s1);
 				}
 			} catch (Exception ex) {
-				ex.printStackTrace();
+				logger.error("FATAL error", ex);
 				System.exit(-1);
 			}
 			// if not found in the dictionary
@@ -988,7 +988,7 @@ public class JWNLDistances {
             }
         }
         catch (JWNLException ex) {
-            ex.printStackTrace();
+			logger.error("FATAL error", ex);
         }
         
         return bestMatch(simMatrix);
@@ -1031,7 +1031,7 @@ public class JWNLDistances {
                 return (2 * maxCommon / (best1.size() + best2.size()));
             }
             catch (JWNLException je) {
-                je.printStackTrace();
+				logger.error("FATAL error", je);
                 System.exit(-1);
             }
         }
@@ -1145,7 +1145,7 @@ public class JWNLDistances {
                 return value;
             }
             catch (JWNLException je) {
-                je.printStackTrace();
+				logger.error("FATAL error", je);
                 System.exit(-1);
             }
         }
@@ -1170,7 +1170,7 @@ public class JWNLDistances {
             index = dictionary.lookupIndexWord(POS.VERB, word);
             if (index != null) verbs.put(word, index);
         } catch (Exception ex) {
-            ex.printStackTrace();
+			logger.error("FATAL error", ex);
             System.exit(-1);
         }
     }

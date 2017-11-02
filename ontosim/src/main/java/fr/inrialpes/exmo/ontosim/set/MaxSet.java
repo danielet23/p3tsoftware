@@ -58,13 +58,13 @@ public class MaxSet<S> extends SetMeasure<S> {
 					res = ((Double) m.invoke(localMeasure, new Object[]{o1Elem, o2It.next()})).doubleValue();
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error("FATAL error", e);
 				} catch (IllegalAccessException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error("FATAL error", e);
 				} catch (InvocationTargetException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error("FATAL error", e);
 				}
 				max = Math.max(max, res);
 			}
@@ -116,10 +116,10 @@ public class MaxSet<S> extends SetMeasure<S> {
 			return (sum12+sum21)/(o1.size()+o2.size());
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch
-			e.printStackTrace();
+			logger.error("FATAL error", e);
 		} catch (NoSuchMethodException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("FATAL error", e);
 		}
 		return 0;
 	}

@@ -36,7 +36,6 @@ package fr.inrialpes.exmo.ontowrap.owlapi10;
 import java.net.URI;
 import java.util.AbstractSet;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -183,7 +182,7 @@ public class OWLAPIOntology extends BasicOntology<OWLOntology> implements HeavyL
 		try {
 		    return new OWLAPIAnnotIt(o,e,lang,typeAnnot);
 		} catch (OWLException e) {
-		    e.printStackTrace();
+			logger.error("FATAL error", e);
 		    return null;
 		}
 	    }
@@ -418,7 +417,7 @@ public class OWLAPIOntology extends BasicOntology<OWLOntology> implements HeavyL
 		    if ( ent instanceof OWLRestriction ) 
 			prop.add( ((OWLRestriction)ent).getProperty() );
 		}
-	    } catch (OWLException e) { e.printStackTrace(); }
+	    } catch (OWLException e) { logger.error("FATAL error", e); }
 	} else {
 	    prop = getInheritedProperties( (OWLClass)cl );
 	}

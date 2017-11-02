@@ -81,6 +81,7 @@ $Id: GroupEval.java 1792 2012-11-30 11:59:22Z euzenat $
     */
 
 public class GroupEval {
+	final static Logger logger = LoggerFactory.getLogger(GroupEval.class);
 
     Properties params = null;
     String filename = null;
@@ -99,7 +100,7 @@ public class GroupEval {
 
     public static void testGroupEval(String[] args) {
 	try { new GroupEval().run( args ); }
-	catch (Exception ex) { ex.printStackTrace(); };
+	catch (Exception ex) {logger.error("FATAL error", ex);}
     }
 
     public void run(String[] args) throws Exception {
@@ -272,7 +273,7 @@ public class GroupEval {
 	try {
 	    OntologyFactory.clear();
 	} catch ( OntowrapException owex ) { // only report
-	    owex.printStackTrace();
+		logger.error("FATAL error", owex);
 	}
 
 	if ( ok == true ) return result;
@@ -299,7 +300,7 @@ public class GroupEval {
 	    eval.eval( params ) ;
 	} catch (Exception ex) {
 	    if ( debug > 1 ) {
-		ex.printStackTrace();
+			logger.error("FATAL error", ex);
 	    } else {
 		System.err.println("GroupEval: "+ex);
 		System.err.println(alignName1+ " - "+alignName2 );
@@ -323,7 +324,7 @@ public class GroupEval {
 	    else if ( type.equals("tex") ) printLATEX( result, writer );
 	    else if ( type.equals("triangle") ) printTRIANGLE( result, writer );
 	} catch ( FileNotFoundException fnfex) {
-	    fnfex.printStackTrace();
+		logger.error("FATAL error", fnfex);
 	} finally {
 	    writer.close();
 	}

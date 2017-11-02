@@ -38,6 +38,7 @@ import java.util.Properties;
  * All this could be achieved by using the parameters which could be Alterator/Step
  */
 public class DiscriminantGenerator extends TestSet {
+	final static Logger logger = LoggerFactory.getLogger(DiscriminantGenerator.class);
 
     public void initTestCases( Properties params ) {
 	// Process params
@@ -52,7 +53,7 @@ public class DiscriminantGenerator extends TestSet {
 	try {
 	    if ( stepval != null && !stepval.equals("") ) STEP = Integer.parseInt( stepval );
 	} catch ( Exception ex ) {
-	    ex.printStackTrace(); // continue with the default
+		logger.error("FATAL error", ex); // continue with the default
 	}
 	final float INCR = 1.0f/(STEP-1);
 	if ( debug ) System.err.println( " STEP: "+STEP+" / INCR: "+INCR );

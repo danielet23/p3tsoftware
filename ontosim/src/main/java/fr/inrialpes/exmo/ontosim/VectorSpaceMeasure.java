@@ -45,6 +45,7 @@ import fr.inrialpes.exmo.ontowrap.OntowrapException;
  * class VectorSpaceMeasure
  */
 public  class VectorSpaceMeasure implements Measure<LoadedOntology<?>> {
+	final static Logger logger = LoggerFactory.getLogger(VectorSpaceMeasure.class);
 
     private Analyzer analyzer = new SnowballAnalyzer(Version.LUCENE_30, "English",StopAnalyzer.ENGLISH_STOP_WORDS_SET);
 
@@ -116,9 +117,9 @@ public  class VectorSpaceMeasure implements Measure<LoadedOntology<?>> {
 			if (entUri != null && entUri.getFragment() != null) {
 			    ontDoc.addOccTerm(entUri.getFragment());
 			}
-		    } catch (Exception ex) { ex.printStackTrace(); }
+		    } catch (Exception ex) { logger.error("FATAL error", ex); }
 		}
-	    } catch ( OntowrapException owex ) { owex.printStackTrace(); }
+	    } catch ( OntowrapException owex ) { logger.error("FATAL error", owex); }
 
 	    ontIndex.add(ontDoc);
 	    ontologies.put(ontology, ontDoc);
@@ -151,8 +152,8 @@ public  class VectorSpaceMeasure implements Measure<LoadedOntology<?>> {
 		    }
 		} catch (IOException e) {
 		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		}
+			logger.error("FATAL error", e);
+	}
 	}
 
 	/**

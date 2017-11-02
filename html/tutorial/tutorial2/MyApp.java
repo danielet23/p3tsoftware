@@ -35,12 +35,9 @@ import fr.inrialpes.exmo.align.impl.BasicAlignment;
 import fr.inrialpes.exmo.align.impl.BasicParameters;
 import fr.inrialpes.exmo.align.impl.method.StringDistAlignment;
 import fr.inrialpes.exmo.align.impl.renderer.OWLAxiomsRendererVisitor;
-import fr.inrialpes.exmo.align.impl.renderer.RDFRendererVisitor;
 import fr.inrialpes.exmo.align.impl.eval.PRecEvaluator;
 import fr.inrialpes.exmo.align.parser.AlignmentParser;
 
-// SAX standard classes
-import org.xml.sax.SAXException;
 
 // Java standard classes
 import java.io.PrintWriter;
@@ -61,6 +58,7 @@ import java.util.Properties;
  */
 
 public class MyApp {
+	final static Logger logger = LoggerFactory.getLogger(MyApp.class);
 
     public static void testMyApp(String[] args) {
 		URI onto1 = null;
@@ -144,6 +142,6 @@ public class MyApp {
 				writer.flush();
 				writer.close();
 			}
-		} catch (Exception e) { e.printStackTrace(); }
+		} catch (Exception e) { logger.error("FATAL error", e); }
 	}
 }

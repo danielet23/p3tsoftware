@@ -47,6 +47,8 @@ import fr.inrialpes.exmo.align.gen.ParametersIds;
 */
 
 public class TestGen {
+
+	final static Logger logger = LoggerFactory.getLogger(TestGen.class);
     private Properties params = null;
     private String methodName = null;                                           //the name of the method
     private String fileName   = null;                                           //the name of the input file
@@ -60,7 +62,7 @@ public class TestGen {
 
     public static void testGen(String[] args) {
         try { new TestGen().run( args ); }
-        catch ( Exception ex ) { ex.printStackTrace(); };
+        catch ( Exception ex ) { logger.error("FATAL error", ex); }
     }
 
     public void run(String[] args) throws Exception {

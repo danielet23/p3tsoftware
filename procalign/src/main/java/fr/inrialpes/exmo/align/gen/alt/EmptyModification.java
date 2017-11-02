@@ -29,7 +29,6 @@ import java.util.Properties;
 
 import fr.inrialpes.exmo.align.gen.Alterator;
 
-import org.semanticweb.owl.align.Alignment;
 
 /**
  * class EmptyModification

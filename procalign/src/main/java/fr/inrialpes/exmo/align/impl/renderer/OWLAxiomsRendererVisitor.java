@@ -196,7 +196,7 @@ public class OWLAxiomsRendererVisitor extends IndentedRendererVisitor implements
 		try {
 			this.ifMethod(cell);
 		} catch (OntowrapException e) {
-			e.printStackTrace();
+			logger.error("FATAL error", e);
 		}
 	}
 

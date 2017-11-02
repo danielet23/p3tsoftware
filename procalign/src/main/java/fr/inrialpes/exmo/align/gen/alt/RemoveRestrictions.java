@@ -21,7 +21,6 @@
 
 package fr.inrialpes.exmo.align.gen.alt;
 
-import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.Restriction;
 
 import java.util.Properties;

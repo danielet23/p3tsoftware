@@ -2,7 +2,6 @@ package example.ws.matcher;
 
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.URI;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -55,7 +54,7 @@ public class MyAlignmentWS extends example.ws.matcher.MyAlignment implements Ali
 			   }
 			   
 		   } catch (AlignmentException e) {
-			 		e.printStackTrace();
+			   logger.error("FATAL error", e);
 		   }
 		   return null;
 	}

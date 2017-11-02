@@ -390,7 +390,7 @@ public class AlignView extends ViewPart implements SelectionListener, Listener {
 	    htmlMessage = new StringWriter();
 	    AlignmentVisitor htmlV = new HTMLRendererVisitor(  new PrintWriter ( htmlMessage )  );
 	    align.render( htmlV );
-	} catch(Exception ex) { ex.printStackTrace(); }
+	} catch(Exception ex) { logger.error("FATAL error", ex); }
 			
 	String html = htmlMessage.toString();
 	if(html == null || html.equals("")) {
@@ -454,7 +454,7 @@ public class AlignView extends ViewPart implements SelectionListener, Listener {
 		localAlignBox.select(0);
 		localAlignBox.redraw();
 					
-	    } catch ( Exception ex ) { ex.printStackTrace();}
+	    } catch ( Exception ex ) { logger.error("FATAL error", ex);}
 	    finally {
 	    	if (out != null) {
 	               try {
@@ -859,7 +859,7 @@ MessageDialog.openError(this.getSite().getShell(), "Error message",
 				al.render( owlV );
 				owlalignStr = owlMessage.toString();
 			}catch(Exception ex) {
-				ex.printStackTrace();
+				logger.error("FATAL error", ex);
 			}
 
 			if(owlalignStr==null)  {
@@ -917,7 +917,7 @@ MessageDialog.openError(this.getSite().getShell(), "Error message",
 		  } catch (  ControlException ex ) { }
 		*/
 			}
-			catch ( Exception ex ) { ex.printStackTrace();}
+			catch ( Exception ex ) { logger.error("FATAL error", ex);}
 			finally {
 				ifOutNotNull(out);
 			}
@@ -993,7 +993,7 @@ MessageDialog.openError(this.getSite().getShell(), "Error message",
 
 				checkProjectsIfLocalImportButton(projects, inputName, fn);
 			}
-			catch ( Exception ex ) { ex.printStackTrace();};
+			catch ( Exception ex ) { logger.error("FATAL error", ex);}
 		}
 	}
 
@@ -1049,7 +1049,7 @@ MessageDialog.openError(this.getSite().getShell(), "Error message",
 				}
 
 				MessageDialog.openConfirm(this.getSite().getShell(), "Confirmation", "Alignment is uploaded with ID: \n" + uploadedId);
-			} catch ( Exception ex ) { ex.printStackTrace();}
+			} catch ( Exception ex ) { logger.error("FATAL error", ex);}
 		}
 	}
 
@@ -1525,7 +1525,7 @@ MessageDialog.openError(this.getSite().getShell(), "Error message",
 	try {
 	    url = FileLocator.resolve(url);
 	}catch (IOException ioe){
-	    ioe.printStackTrace();
+		logger.error("FATAL error", ex);
 	}
 	
 	//try {
@@ -1643,7 +1643,7 @@ MessageDialog.openError(this.getSite().getShell(), "Error message",
 		//System.out.printf("No Ontology Project !" );
 		return null;
 	    }
-	} catch ( Exception ex ) { ex.printStackTrace();};
+	} catch ( Exception ex ) { logger.error("FATAL error", ex);}
 	
 	// Put it in the boxes
 	

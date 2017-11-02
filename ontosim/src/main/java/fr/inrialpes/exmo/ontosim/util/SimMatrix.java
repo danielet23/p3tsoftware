@@ -1,7 +1,6 @@
 package fr.inrialpes.exmo.ontosim.util;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Set;
@@ -11,7 +10,6 @@ import fr.inrialpes.exmo.ontosim.entity.model.Entity;
 import fr.inrialpes.exmo.ontosim.entity.model.EntityImpl;
 import fr.inrialpes.exmo.ontowrap.LoadedOntology;
 import fr.inrialpes.exmo.ontowrap.OntologyFactory;
-import fr.inrialpes.exmo.ontowrap.OntowrapException;
 
 /**
  *  class SimMatrix

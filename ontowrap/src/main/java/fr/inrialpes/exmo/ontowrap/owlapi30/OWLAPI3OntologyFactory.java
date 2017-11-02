@@ -42,6 +42,7 @@ import fr.inrialpes.exmo.ontowrap.HeavyLoadedOntology;
  */
 
 public class OWLAPI3OntologyFactory extends OntologyFactory {
+	final static Logger logger = LoggerFactory.getLogger(OWLAPI3OntologyFactory.class);
 
     private URI formalismUri = null;
 
@@ -57,7 +58,7 @@ public class OWLAPI3OntologyFactory extends OntologyFactory {
 	    formalismUri = new URI("http://www.w3.org/2002/07/owl#");
 	    manager = OWLManager.createOWLOntologyManager();
 	} catch (URISyntaxException ex) { // should not happen
-	    ex.printStackTrace();
+		logger.error("FATAL error", ex);
 	}
     }
 
@@ -117,7 +118,7 @@ public class OWLAPI3OntologyFactory extends OntologyFactory {
 	    if ( ontology == null )
 		throw new OntowrapException("Already loaded [owl cache failure] " + uri, ooaeex );
 	} catch ( OWLOntologyCreationException oocex ) {
-	    oocex.printStackTrace();
+		logger.error("FATAL error", oocex);
 	    throw new OntowrapException("Cannot load " + uri, oocex );
 	}
 	onto = new OWLAPI3Ontology();
@@ -131,7 +132,7 @@ public class OWLAPI3OntologyFactory extends OntologyFactory {
 	    // Better put in the OntowrapException of loaded
 	    // The ontology has no URI. In principle, it is not valid
 	    // It may be possible to put the uri instead (now it is void)
-	    e.printStackTrace();
+		logger.error("FATAL error", e);
 	}
 	cache.recordOntology( uri, onto );
 	//System.err.println( "   after-cache: "+cache.getOntology( uri ) );

@@ -49,7 +49,7 @@ import fr.inrialpes.exmo.ontosim.util.HungarianAlgorithm;
 
 public abstract class DistanceAlignment extends ObjectAlignment implements AlignmentProcess {
     Similarity sim;
-
+	final static Logger logger = LoggerFactory.getLogger(DistanceAlignment.class);
     /** Creation **/
     public DistanceAlignment() {};
 
@@ -228,8 +228,8 @@ public abstract class DistanceAlignment extends ObjectAlignment implements Align
 	  if (  params.getProperty("noinst") == null ){
 	      this.extractqsForMethodC(found, max, threshold, val);
 	  }
-      } catch (OntowrapException owex) { owex.printStackTrace(); //}
-      } catch (AlignmentException alex) { alex.printStackTrace(); }
+      } catch (OntowrapException owex) { logger.error("FATAL error", owex); //}
+      } catch (AlignmentException alex) { logger.error("FATAL error", alex); }
       return((Alignment)this);
     }
 
@@ -374,8 +374,8 @@ public abstract class DistanceAlignment extends ObjectAlignment implements Align
 		if (  params.getProperty("noinst") == null ){
 		this.extractssForMethodC(val, threshold);
 	    }
-	} catch (OntowrapException owex) { owex.printStackTrace(); //}
-	} catch (AlignmentException alex) { alex.printStackTrace(); }
+	} catch (OntowrapException owex) { logger.error("FATAL error", owex); //}
+	} catch (AlignmentException alex) { logger.error("FATAL error", alex); }
 	return((Alignment)this);
     }
 
@@ -492,8 +492,8 @@ public abstract class DistanceAlignment extends ObjectAlignment implements Align
 		// Extract the result
 			this.extractqqForMethodC(result, i,  prop1, prop2, threshold);
 	    }
-	} catch (AlignmentException alex) { alex.printStackTrace(); }
-	catch (OntowrapException owex) { owex.printStackTrace(); }
+	} catch (AlignmentException alex) { logger.error("FATAL error", alex); }
+	catch (OntowrapException owex) { logger.error("FATAL error", owex); }
 	// For individuals
 		this.extractqqIfElseMethodD(params, threshold );
 	return((Alignment)this);
@@ -657,8 +657,8 @@ public abstract class DistanceAlignment extends ObjectAlignment implements Align
 					// Extract the result
 					this.extractqqIfElseMethodDInnerForC(i, result, ind1, ind2, threshold);
 				}
-			} catch (AlignmentException alex) { alex.printStackTrace(); //}
-			} catch (OntowrapException owex) { owex.printStackTrace(); }
+			} catch (AlignmentException alex) { logger.error("FATAL error", alex); //}
+			} catch (OntowrapException owex) { logger.error("FATAL error", owex); }
 		}
 	}
 
@@ -757,7 +757,7 @@ public abstract class DistanceAlignment extends ObjectAlignment implements Align
 			try {
 				this.extractqqgreedyForMethodA(cellSet, val, threshold);
 			} catch (AlignmentException e) {
-				e.printStackTrace();
+				logger.error("FATAL error", e);
 			}
 
 			// for properties
@@ -767,19 +767,19 @@ public abstract class DistanceAlignment extends ObjectAlignment implements Align
 			try {
 				this.extractqqgreedyForMethodB(cellSet, pit1, val, threshold);
 			} catch (AlignmentException e) {
-				e.printStackTrace();
+				logger.error("FATAL error", e);
 			}
 
 			// for individuals
 			try {
 				this.extractqqgreedyIfElseMethodC(cellSet, params, val, threshold);
 			} catch (AlignmentException e) {
-				e.printStackTrace();
+				logger.error("FATAL error", e);
 			}
 			// O(n^2)
 			this.extractqqgreedyForMethodD(cellSet);
 		} catch (OntowrapException owex) {
-			owex.printStackTrace();
+			logger.error("FATAL error", owex);
 		}
 		return((Alignment)this);
 	}
@@ -905,7 +905,7 @@ public abstract class DistanceAlignment extends ObjectAlignment implements Align
 						try {
 							return compareIfElseA(o1, o2);
 						} catch (OntowrapException e) {
-							e.printStackTrace();
+							logger.error("FATAL error", e);
 						}
 						return -1;
 					}
@@ -1013,7 +1013,7 @@ public abstract class DistanceAlignment extends ObjectAlignment implements Align
 				}
 			}
 		} catch (AlignmentException alex) {
-			alex.printStackTrace();
+			logger.error("FATAL error", alex);
 		}
 	}
 }

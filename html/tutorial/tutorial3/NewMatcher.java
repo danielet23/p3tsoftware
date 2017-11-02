@@ -34,7 +34,6 @@ import fr.inrialpes.exmo.align.impl.ObjectAlignment;
 
 import fr.inrialpes.exmo.ontowrap.OntowrapException;
 
-import java.net.URI;
 import java.util.Properties;
 
 /**
@@ -42,6 +41,7 @@ import java.util.Properties;
  */
 
 public class NewMatcher extends ObjectAlignment implements AlignmentProcess{
+	final static Logger logger = LoggerFactory.getLogger(NewMatcher.class);
 
 
     public NewMatcher() {
@@ -76,7 +76,7 @@ public class NewMatcher extends ObjectAlignment implements AlignmentProcess{
 		    addAlignCell(p1,p2,"=",match(p1,p2));    
 		}
 	    }
-	} catch (Exception e) { e.printStackTrace(); }
+	} catch (Exception e) { logger.error("FATAL error", e); }
     }
 
     /*

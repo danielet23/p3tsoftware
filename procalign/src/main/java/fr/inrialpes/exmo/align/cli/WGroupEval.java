@@ -85,6 +85,7 @@ $Id: WGroupEval.java 1701 2012-03-10 15:54:01Z euzenat $
     */
 
 public class WGroupEval {
+	final static Logger logger = LoggerFactory.getLogger(WGroupEval.class);
 
     Properties params = null;
     String filename = null;
@@ -101,7 +102,7 @@ public class WGroupEval {
 
     public static void testWGroupEval(String[] args) {
 	try { new WGroupEval().run( args ); }
-	catch (Exception ex) { ex.printStackTrace(); };
+	catch (Exception ex) { logger.error("FATAL error", ex); }
     }
 
     public void run(String[] args) throws Exception {
@@ -285,7 +286,7 @@ public class WGroupEval {
 	try {
 	    OntologyFactory.clear();
 	} catch ( OntowrapException owex ) { // only report
-	    owex.printStackTrace();
+		logger.error("FATAL error", owex);
 	}
 
 	if ( ok == true ) return result;
@@ -312,7 +313,7 @@ public class WGroupEval {
 	    eval.eval( params ) ;
 	} catch (Exception ex) {
 	    if ( debug > 1 ) {
-		ex.printStackTrace();
+			logger.error("FATAL error", ex);
 	    } else {
 		System.err.println("WGroupEval: "+ex);
 		System.err.println(alignName1+ " - "+alignName2 );
@@ -506,7 +507,7 @@ which the program does...
 	    writer.println("NaN: division per zero, likely due to empty alignment.</small></p>");
 	    if ( embedded != true ) writer.println("</body></html>");
 	} catch (Exception ex) {
-	    ex.printStackTrace();
+		logger.error("FATAL error", ex);
 	} finally {
 	    writer.close();
 	}

@@ -89,12 +89,12 @@ public class GenericReflectiveVisitor {
 		method.invoke( visitor, new Object[] {o} );
 		return true;
 	    } catch ( IllegalAccessException iaex ) {
-		iaex.printStackTrace();
+			logger.error("FATAL error", iaex);
 	    } catch ( InvocationTargetException itex ) { 
 		if ( itex.getCause() instanceof AlignmentException ) {
 		    throw (AlignmentException)itex.getCause();
 		} else {
-		    itex.printStackTrace();
+			logger.error("FATAL error", itex);
 		}
 	    }
 	}

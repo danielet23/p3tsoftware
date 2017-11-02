@@ -35,6 +35,7 @@ import java.util.Vector;
  * @param <E>
  */
 public class HLPropertyImpl<E> extends HLEntityImpl<E> implements HLProperty<E>{
+	final static Logger logger = LoggerFactory.getLogger(HLPropertyImpl.class);
 
     protected HLPropertyImpl(HeavyLoadedOntology<E> ont, E e) {
 	super(ont, e);
@@ -58,7 +59,7 @@ public class HLPropertyImpl<E> extends HLEntityImpl<E> implements HLProperty<E>{
 	if (subproperties.get(idx)==null  || subproperties.get(idx).get()==null) 
 	    try {
 		subproperties.set(idx, new SoftReference<Set<HLProperty<E>>>((Set<HLProperty<E>>)fact.getFrom((Set<E>)onto.getSubProperties(getObject(), local, asserted, named))));
-	    } catch ( OntowrapException owex ) { owex.printStackTrace(); }
+	    } catch ( OntowrapException owex ) { logger.error("FATAL error", owex); }
 	return subproperties.get(idx).get();
     }
     
@@ -74,7 +75,7 @@ public class HLPropertyImpl<E> extends HLEntityImpl<E> implements HLProperty<E>{
 	if (superproperties.get(idx)==null  || superproperties.get(idx).get()==null)
 	    try {
 		superproperties.set(idx, new SoftReference<Set<HLProperty<E>>>((Set<HLProperty<E>>)fact.getFrom((Set<E>)onto.getSuperProperties(getObject(), local, asserted, named))));
-	    } catch ( OntowrapException owex ) { owex.printStackTrace(); }
+	    } catch ( OntowrapException owex ) { logger.error("FATAL error", owex); }
 	return superproperties.get(idx).get();
     }
     
@@ -90,7 +91,7 @@ public class HLPropertyImpl<E> extends HLEntityImpl<E> implements HLProperty<E>{
 	if (ranges.get(idx)==null  || ranges.get(idx).get()==null) 
 	    try {
 		ranges.set(idx, new SoftReference<Set<HLClass<E>>>((Set<HLClass<E>>)fact.getFrom((Set<E>)onto.getRange(getObject(), asserted))));
-	    } catch ( OntowrapException owex ) { owex.printStackTrace(); }
+	    } catch ( OntowrapException owex ) {logger.error("FATAL error", owex); }
 	return ranges.get(idx).get();
     }
     
@@ -106,7 +107,7 @@ public class HLPropertyImpl<E> extends HLEntityImpl<E> implements HLProperty<E>{
 	if (domains.get(idx)==null  || domains.get(idx).get()==null) 
 	    try {
 		domains.set(idx, new SoftReference<Set<HLClass<E>>>((Set<HLClass<E>>)fact.getFrom((Set<E>)onto.getDomain(getObject(), asserted))));
-	    } catch ( OntowrapException owex ) { owex.printStackTrace(); }
+	    } catch ( OntowrapException owex ) { logger.error("FATAL error", owex); }
 	return domains.get(idx).get();
     }
 }

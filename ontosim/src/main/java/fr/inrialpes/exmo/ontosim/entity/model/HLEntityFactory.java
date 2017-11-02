@@ -33,6 +33,7 @@ import java.util.*;
  * @param <E>
  */
 public final class HLEntityFactory<E> {
+	final static Logger logger = LoggerFactory.getLogger(HLEntityFactory.class);
     
     public final static Map<HeavyLoadedOntology<?>,HLEntityFactory<?>> FACTORIES=new HashMap<HeavyLoadedOntology<?>,HLEntityFactory<?>>();
     
@@ -63,7 +64,7 @@ public final class HLEntityFactory<E> {
 	    else if (onto.isIndividual(obj))
 		e= new HLIndividualImpl<E>(onto,obj);
 	    if (e!=null) cache.put(obj, new SoftReference<HLEntity<E>>(e));
-	} catch ( OntowrapException owex ) { owex.printStackTrace(); }
+	} catch ( OntowrapException owex ) { logger.error("FATAL error", owex); }
 	return e;
     }
     

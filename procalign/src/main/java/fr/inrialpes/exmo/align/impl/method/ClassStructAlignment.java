@@ -24,7 +24,6 @@ import java.util.Vector;
 import java.util.Set;
 import java.util.Properties;
 
-import com.sun.corba.se.spi.ior.ObjectKey;
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentProcess;
 import org.semanticweb.owl.align.Cell;

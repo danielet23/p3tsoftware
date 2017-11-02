@@ -32,16 +32,11 @@ import java.net.ProtocolException;
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentProcess;
 import org.semanticweb.owl.align.AlignmentException;
-import org.semanticweb.owl.align.AlignmentVisitor;
-import org.semanticweb.owl.align.Cell;
-import org.semanticweb.owl.align.Relation;
 
 import fr.inrialpes.exmo.align.impl.URIAlignment;
 import fr.inrialpes.exmo.align.impl.Namespace;
 import fr.inrialpes.exmo.align.parser.AlignmentParser;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
  /**
   * This is an AlignmentProcess which perform matching by connecting

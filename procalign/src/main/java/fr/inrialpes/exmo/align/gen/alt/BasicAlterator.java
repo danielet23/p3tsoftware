@@ -58,6 +58,7 @@ import java.util.*;
  * abstract class BasicAlterator
  */
 public abstract class BasicAlterator implements Alterator {
+    final static Logger logger = LoggerFactory.getLogger(BasicAlterator.class);
     protected boolean debug = false;
 
     protected ClassHierarchy classHierarchy;    // the class hierarchy
@@ -413,8 +414,8 @@ public abstract class BasicAlterator implements Alterator {
 		}
             }
 	    alignment.setProperty( "##", base1 );
-        } catch ( Exception ex ) {  
-	    ex.printStackTrace();
+        } catch ( Exception ex ) {
+            logger.error("FATAL error", ex);
         }
 	return extractedAlignment;
     }
@@ -491,7 +492,7 @@ public abstract class BasicAlterator implements Alterator {
 	    ByteArrayInputStream in = new ByteArrayInputStream( sout.getBytes("UTF8") );
 	    model.read( in, null );
 	} catch ( Exception ex ) { //UnsupportedEncodingException;
-	    ex.printStackTrace(); 
+        logger.error("FATAL error", ex);
 	}
 	return model;
     }

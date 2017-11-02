@@ -21,27 +21,11 @@
 package fr.inrialpes.exmo.ontowrap.skosapi;
 
 import java.net.URI;
-import java.util.AbstractSet;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
-import org.semanticweb.skos.SKOSDataFactory;
-import org.semanticweb.skos.SKOSDataset;
-import org.semanticweb.skos.SKOSAnnotation;
-import org.semanticweb.skos.SKOSEntity;
-import org.semanticweb.skos.SKOSConcept;
-import org.semanticweb.skos.SKOSLiteral;
-import org.semanticweb.skos.SKOSUntypedLiteral;
-import org.semanticweb.skos.SKOSDataProperty;
-import org.semanticweb.skos.SKOSObjectRelationAssertion;
-import org.semanticweb.skos.properties .SKOSNarrowerProperty;
-import org.semanticweb.skos.properties .SKOSBroaderProperty;
 
 import fr.inrialpes.exmo.ontowrap.Annotation;
-import fr.inrialpes.exmo.ontowrap.BasicOntology;
-import fr.inrialpes.exmo.ontowrap.HeavyLoadedOntology;
 import fr.inrialpes.exmo.ontowrap.OntowrapException;
 
 /**

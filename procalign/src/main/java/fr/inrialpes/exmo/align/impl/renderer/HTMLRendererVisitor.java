@@ -26,7 +26,6 @@ import java.util.Hashtable;
 import java.io.PrintWriter;
 import java.net.URI;
 
-import fr.inrialpes.exmo.align.impl.BasicCell;
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentVisitor;
 import org.semanticweb.owl.align.AlignmentException;

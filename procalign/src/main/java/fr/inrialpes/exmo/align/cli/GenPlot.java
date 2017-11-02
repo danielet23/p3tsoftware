@@ -89,6 +89,7 @@ import org.semanticweb.owl.align.AlignmentException;
  */
 
 public class GenPlot {
+	final static Logger logger = LoggerFactory.getLogger(GenPlot.class);
 
     int STEP = 10;
     Properties params = new Properties();
@@ -107,7 +108,7 @@ public class GenPlot {
 
     public static void testGenPlot(String[] args) {
 	try { new GenPlot().run( args ); }
-	catch (Exception ex) { ex.printStackTrace(); }
+	catch (Exception ex) {logger.error("FATAL error", ex); }
     }
 
     public void run(String[] args) throws Exception {
@@ -220,7 +221,7 @@ public class GenPlot {
 	private void runIfElseMethodDInner(OutputStream stream){
 		try {
 			stream = new FileOutputStream(outFile);
-		} catch (Exception ex) {ex.printStackTrace();}
+		} catch (Exception ex) {logger.error("FATAL error", ex);}
 		finally {
 
 			if (stream != null) {
@@ -355,7 +356,7 @@ public class GenPlot {
 		evaluators.add( i, ev );
 	    }
 	} catch (Exception ex) { //InstantiationException, IllegalAccessException
-	    ex.printStackTrace();
+		logger.error("FATAL error", ex);
 	    System.exit(-1);
 	}
 
@@ -401,7 +402,7 @@ public class GenPlot {
 	try {
 	    OntologyFactory.clear();
 	} catch ( OntowrapException owex ) { // only report
-	    owex.printStackTrace();
+		logger.error("FATAL error", owex);
 	}
     }
 
@@ -600,7 +601,7 @@ public class GenPlot {
 				writer.println();
 				this.printPGFTexForCInner(table, writer);
 			} catch (Exception ex) {
-				ex.printStackTrace();
+				logger.error("FATAL error", ex);
 			} finally {
 				if ( writer != null ) writer.close();
 			}

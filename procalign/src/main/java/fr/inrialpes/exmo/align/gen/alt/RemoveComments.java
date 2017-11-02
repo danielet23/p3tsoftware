@@ -21,18 +21,7 @@
 
 package fr.inrialpes.exmo.align.gen.alt;
 
-import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.ontology.Ontology;
-import com.hp.hpl.jena.ontology.OntClass;
-import com.hp.hpl.jena.ontology.OntProperty;
-import com.hp.hpl.jena.ontology.Individual;
-
 import java.util.Properties;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import fr.inrialpes.exmo.align.gen.Alterator;

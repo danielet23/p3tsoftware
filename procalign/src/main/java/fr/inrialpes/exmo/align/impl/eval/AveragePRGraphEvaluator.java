@@ -65,6 +65,7 @@ import java.util.Vector;
  */
 
 public class AveragePRGraphEvaluator extends GraphEvaluator {
+	final static Logger logger = LoggerFactory.getLogger(AveragePRGraphEvaluator.class);
 
     private int size = 0; // for averaging
 
@@ -108,7 +109,7 @@ public class AveragePRGraphEvaluator extends GraphEvaluator {
 	try {
 	    evalAlignment( reference, al );
 	} catch ( AlignmentException aex ) {
-	    aex.printStackTrace();
+		logger.error("FATAL error", aex);
 	}
     }
 

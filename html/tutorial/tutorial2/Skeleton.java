@@ -30,19 +30,15 @@ import org.semanticweb.owl.align.AlignmentProcess;
 import org.semanticweb.owl.align.AlignmentVisitor;
 
 // Alignment API implementation classes
-import fr.inrialpes.exmo.align.impl.BasicAlignment;
 import fr.inrialpes.exmo.align.impl.BasicParameters;
 import fr.inrialpes.exmo.align.impl.method.StringDistAlignment;
 import fr.inrialpes.exmo.align.impl.renderer.RDFRendererVisitor;
 
-// SAX standard classes
-import org.xml.sax.SAXException;
 
 // Java standard classes
 import java.io.PrintWriter;
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
-import java.io.File;
 import java.net.URI;
 import java.util.Properties;
 
@@ -53,6 +49,7 @@ import java.util.Properties;
  */
 
 public class Skeleton {
+	final static Logger logger = LoggerFactory.getLogger(Skeleton.class);
 
     public static void testSkeleton(String[] args) {
 		URI onto1 = null;
@@ -83,6 +80,6 @@ public class Skeleton {
 			writer.flush();
 			writer.close();
 
-		} catch (Exception e) { e.printStackTrace(); };
+		} catch (Exception e) { logger.error("FATAL error", e); }
 	}
 }

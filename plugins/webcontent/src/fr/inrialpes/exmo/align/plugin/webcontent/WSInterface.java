@@ -69,7 +69,7 @@ public class WSInterface {
 	    		
 	    		SOAPUrl = new URL( "http://" + host + ":" + htmlPort + "/aserv" );
 	    		
-	    	} catch ( Exception ex ) { ex.printStackTrace(); };
+	    	} catch ( Exception ex ) { logger.error("FATAL error", ex);}
 	    	
 			fac.setValidating(false);
 			fac.setNamespaceAware(false);
@@ -104,7 +104,7 @@ public class WSInterface {
 				answer = sendFile( message, params );
 				//System.out.println("SOAP loaded align=" + answer );
 				
-			} catch ( Exception ex ) { ex.printStackTrace(); };
+			} catch ( Exception ex ) { logger.error("FATAL error", ex); }
 			if(! connected ) return null;
 			
 			Document domMessage = null;
@@ -112,9 +112,9 @@ public class WSInterface {
 			    domMessage = BUILDER.parse( new ByteArrayInputStream( answer.getBytes()) );
 			    
 			} catch  ( IOException ioex ) {
-			    ioex.printStackTrace();
+				logger.error("FATAL error", ioex);
 			} catch  ( SAXException saxex ) {
-			    saxex.printStackTrace();
+				logger.error("FATAL error", saxex);
 			}
 			
 				   
@@ -149,7 +149,7 @@ public class WSInterface {
 				
 				
 			}
-			catch ( Exception ex ) { ex.printStackTrace(); };
+			catch ( Exception ex ) { logger.error("FATAL error", ex); }
 			if(! connected ) return null; 
 			
 			Document domMessage = null;
@@ -157,9 +157,9 @@ public class WSInterface {
 			    domMessage = BUILDER.parse( new ByteArrayInputStream( answer.getBytes()) );
 			    
 			} catch  ( IOException ioex ) {
-			    ioex.printStackTrace();
+				logger.error("FATAL error", ioex);
 			} catch  ( SAXException saxex ) {
-			    saxex.printStackTrace();
+				logger.error("FATAL error", saxex);
 			}
 			
 			String[] result = getTagFromSOAP( domMessage,  "cutResponse" );
@@ -194,7 +194,7 @@ public class WSInterface {
 				// Send message
 				answer = sendMessage( message, params );
 			}
-			catch ( Exception ex ) { ex.printStackTrace(); };
+			catch ( Exception ex ) { logger.error("FATAL error", ex); }
 			if(! connected ) return null; 
 			
 			Document domMessage = null;
@@ -202,9 +202,9 @@ public class WSInterface {
 				    domMessage = BUILDER.parse( new ByteArrayInputStream( answer.getBytes()) );
 				    
 				} catch  ( IOException ioex ) {
-				    ioex.printStackTrace();
+				logger.error("FATAL error", ioex);
 				} catch  ( SAXException saxex ) {
-				    saxex.printStackTrace();
+				logger.error("FATAL error", saxex);
 				}
 				
 				 
@@ -232,7 +232,7 @@ public class WSInterface {
 				// Send message
 				answer = sendMessage( message, params );
 			}
-			catch ( Exception ex ) { ex.printStackTrace(); };
+			catch ( Exception ex ) { logger.error("FATAL error", ex); }
 			if(! connected ) return null; 
 				   
 			Document domMessage = null;
@@ -240,9 +240,9 @@ public class WSInterface {
 				    domMessage = BUILDER.parse( new ByteArrayInputStream( answer.getBytes()) );
 				    
 				} catch  ( IOException ioex ) {
-				    ioex.printStackTrace();
+					logger.error("FATAL error", ioex);
 				} catch  ( SAXException saxex ) {
-				    saxex.printStackTrace();
+					logger.error("FATAL error", saxex);
 				}
 				
 			String[] result = getTagFromSOAP( domMessage,  "findResponse/alignmentList/alid" );
@@ -274,7 +274,7 @@ public class WSInterface {
 				// Send message
 				answer = sendMessage( message, params );
 			}
-			catch ( Exception ex ) { ex.printStackTrace(); };
+			catch ( Exception ex ) { logger.error("FATAL error", ex); }
 			
 			if(! connected ) return null; 
 			
@@ -285,9 +285,9 @@ public class WSInterface {
 			    domMessage = BUILDER.parse( new ByteArrayInputStream( answer.getBytes()) );
 			    
 			} catch  ( IOException ioex ) {
-			    ioex.printStackTrace();
+				logger.error("FATAL error", ioex);
 			} catch  ( SAXException saxex ) {
-			    saxex.printStackTrace();
+				logger.error("FATAL error", saxex);
 			}
 			
 			
@@ -332,7 +332,7 @@ public class WSInterface {
 			    	 
 			    }
 			    
-			    catch ( Exception ex ) { ex.printStackTrace(); };
+			    catch ( Exception ex ) { logger.error("FATAL error", ex); }
 			    if(! connected ) return null; 
 			    
 			    // Cut SOAP header
@@ -342,9 +342,9 @@ public class WSInterface {
 				    domMessage = BUILDER.parse( new ByteArrayInputStream( answer.getBytes()) );
 				    
 				} catch  ( IOException ioex ) {
-				    ioex.printStackTrace();
+					logger.error("FATAL error", ioex);
 				} catch  ( SAXException saxex ) {
-				    saxex.printStackTrace();
+					logger.error("FATAL error", saxex);
 				}
 				
 				 
@@ -388,7 +388,7 @@ public class WSInterface {
 			
 			
 			
-		} catch ( Exception ex ) { ex.printStackTrace();  };
+		} catch ( Exception ex ) { logger.error("FATAL error", ex); }
 			 
 			 
 		// Cut SOAP header
@@ -401,9 +401,9 @@ public class WSInterface {
 		    domMessage = BUILDER.parse( new ByteArrayInputStream( answer.getBytes()) );
 		    
 		} catch  ( IOException ioex ) {
-		    ioex.printStackTrace();
+			logger.error("FATAL error", ioex);
 		} catch  ( SAXException saxex ) {
-		    saxex.printStackTrace();
+			logger.error("FATAL error", saxex);
 		}
 		
 		
@@ -447,16 +447,16 @@ public class WSInterface {
 				
 				
 				
-			} catch ( Exception ex ) { ex.printStackTrace();  };
+			} catch ( Exception ex ) { logger.error("FATAL error", ex);  }
 				 
 			Document domMessage = null;
 			try {
 			    domMessage = BUILDER.parse( new ByteArrayInputStream( answer.getBytes()) );
 			    
 			} catch  ( IOException ioex ) {
-			    ioex.printStackTrace();
+				logger.error("FATAL error", ioex);
 			} catch  ( SAXException saxex ) {
-			    saxex.printStackTrace();
+				logger.error("FATAL error", saxex);
 			}
 			
 			 
@@ -490,7 +490,7 @@ public class WSInterface {
 				
 				
 				
-			} catch ( Exception ex ) { ex.printStackTrace();  };
+			} catch ( Exception ex ) { logger.error("FATAL error", ex);  }
 			
 			//there is a problem when trying to remove SOAP header from message for this case			
 			/*	 
@@ -542,7 +542,7 @@ public class WSInterface {
 				//corrList = getCorresFromAnswer( answer, "tr", "#" );
 		    	
 			}
-			catch ( Exception ex ) { ex.printStackTrace() ;};
+			catch ( Exception ex ) {logger.error("FATAL error", ex);}
 			
 			if(! connected ) return null; 
 			
@@ -551,9 +551,9 @@ public class WSInterface {
 			    domMessage = BUILDER.parse( new ByteArrayInputStream( answer.getBytes()) );
 			    
 			} catch  ( IOException ioex ) {
-			    ioex.printStackTrace();
+				logger.error("FATAL error", ioex);
 			} catch  ( SAXException saxex ) {
-			    saxex.printStackTrace();
+				logger.error("FATAL error", saxex);
 			}
 			
 			 
@@ -644,7 +644,7 @@ public class WSInterface {
 
 		     
 	        } catch  (Exception ex) {
-	        	connected= false; ex.printStackTrace() ; return null;
+	        	connected= false; logger.error("FATAL error", ex); return null;
 	        	}
 	        
 	        connected = true;
@@ -654,9 +654,9 @@ public class WSInterface {
 			    domMessage = BUILDER.parse( new ByteArrayInputStream( answer.getBytes()) );
 			    
 			} catch  ( IOException ioex ) {
-			    ioex.printStackTrace();
+				logger.error("FATAL error", ioex);
 			} catch  ( SAXException saxex ) {
-			    saxex.printStackTrace();
+				logger.error("FATAL error", saxex);
 			}
 			
 		
@@ -989,7 +989,7 @@ public class WSInterface {
 	            //if(httpConn.HTTP_OK == httpConn.getResponseCode()) System.out.println("Request OK");
 	        	
 	        } catch  (Exception ex) {
-	        	connected= false; ex.printStackTrace() ; return null;
+	        	connected= false; logger.error("FATAL error", ex); return null;
 	        	}
 	        
 	        connected = true;
@@ -1046,7 +1046,7 @@ public class WSInterface {
 	            
 	        	
 	        } catch  (Exception ex) {
-	        	connected= false; ex.printStackTrace() ; return null;
+	        	connected= false; logger.error("FATAL error", ex); return null;
 	        	} finally {
 				if (fi != null) {
 					try {

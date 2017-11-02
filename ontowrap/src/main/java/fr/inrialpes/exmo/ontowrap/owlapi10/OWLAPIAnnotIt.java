@@ -36,6 +36,7 @@ import org.semanticweb.owl.model.OWLOntology;
  *
  */
 public class OWLAPIAnnotIt implements Iterator<String> {
+	final static Logger logger = LoggerFactory.getLogger(OWLAPIAnnotIt.class);
 
 	/*private OWLOntology o;
 	private OWLEntity e;*/
@@ -80,7 +81,7 @@ public class OWLAPIAnnotIt implements Iterator<String> {
             			}
         		}
         	    } catch (OWLException e) {
-        		e.printStackTrace();
+					logger.error("FATAL error", e);
         		currentElem=null;
         	    }
 	    }

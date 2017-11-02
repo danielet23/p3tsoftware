@@ -40,6 +40,7 @@ import fr.inrialpes.exmo.ontowrap.OntowrapException;
  * class TripleBasedEntitySim
  */
 public class TripleBasedEntitySim implements Measure<Entity<OntResource>> {
+	final static Logger logger = LoggerFactory.getLogger(TripleBasedEntitySim.class);
 
     IterativeNodeSim currentSim;
     Collection<Model> currentModels;
@@ -67,7 +68,7 @@ public class TripleBasedEntitySim implements Measure<Entity<OntResource>> {
                     o1URIS.add(o1.getEntityURI(o).toString());
 			}
 		} catch (OntowrapException e) {
-			e.printStackTrace();
+			logger.error("FATAL error", e);
 		}
 	}
 
@@ -78,7 +79,7 @@ public class TripleBasedEntitySim implements Measure<Entity<OntResource>> {
 				o2URIS.add(o2.getEntityURI(o).toString());
 			}
 		} catch (OntowrapException e) {
-			e.printStackTrace();
+			logger.error("FATAL error", e);
 		}
 	}
 

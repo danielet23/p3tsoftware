@@ -21,15 +21,10 @@
 
 package fr.inrialpes.exmo.align.impl.eval;
 
-import org.semanticweb.owl.align.Alignment;
-import org.semanticweb.owl.align.AlignmentException;
-import org.semanticweb.owl.align.Cell;
-
 import fr.inrialpes.exmo.align.impl.Namespace;
 import fr.inrialpes.exmo.align.parser.SyntaxElement;
 
 import java.util.Properties;
-import java.util.Vector;
 import java.io.PrintWriter;
 
 /**

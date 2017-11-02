@@ -23,7 +23,6 @@ package fr.inrialpes.exmo.align.gen;
 
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentException;
-import org.semanticweb.owl.align.Cell;
 import org.semanticweb.owl.align.OntologyNetwork;
 
 import fr.inrialpes.exmo.align.impl.BasicOntologyNetwork;

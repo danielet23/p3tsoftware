@@ -29,7 +29,6 @@ import fr.inrialpes.exmo.align.parser.SyntaxElement.Constructor;
 import fr.inrialpes.exmo.align.parser.SyntaxElement;
 
 import org.semanticweb.owl.align.AlignmentException;
-import org.semanticweb.owl.align.AlignmentVisitor;
 
 import fr.inrialpes.exmo.align.parser.TypeCheckingVisitor;
 import fr.inrialpes.exmo.align.parser.TypeCheckingVisitor.TYPE;

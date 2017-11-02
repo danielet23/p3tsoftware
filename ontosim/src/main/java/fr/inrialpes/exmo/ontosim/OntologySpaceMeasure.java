@@ -38,6 +38,7 @@ import fr.inrialpes.exmo.ontowrap.jena25.JENAOntologyFactory;
  * class  OntologySpaceMeasure
  */
 public class  OntologySpaceMeasure implements Measure<LoadedOntology<?>> {
+	final static Logger logger = LoggerFactory.getLogger(OntologySpaceMeasure.class);
 
 	private SetMeasure<Entity<?>> globalMeasure;
 
@@ -62,12 +63,12 @@ public class  OntologySpaceMeasure implements Measure<LoadedOntology<?>> {
 		try {
 		    for ( Object e1 : o1.getEntities() )
 			entities.add(HLEntityFactory.getInstance((HeavyLoadedOntology)o1).createHLEntity(e1));
-		} catch ( OntowrapException owex ) { owex.printStackTrace(); }
+		} catch ( OntowrapException owex ) { logger.error("FATAL error", owex); }
 	    }
 	    else {
 		try {
 		    for ( Object e1 : o1.getEntities() ) entities.add(new EntityImpl(o1,e1));
-		} catch ( OntowrapException owex ) { owex.printStackTrace(); }
+		} catch ( OntowrapException owex ) { logger.error("FATAL error", owex); }
 	    }
 	    return entities;
 	}
@@ -84,7 +85,7 @@ public class  OntologySpaceMeasure implements Measure<LoadedOntology<?>> {
 							o1 = f.loadOntology(o1.getFile());
 						} catch (OntowrapException e) {
 							// TODO Auto-generated catch block
-							e.printStackTrace();
+							logger.error("FATAL error", e);
 						}
 					}
 				}

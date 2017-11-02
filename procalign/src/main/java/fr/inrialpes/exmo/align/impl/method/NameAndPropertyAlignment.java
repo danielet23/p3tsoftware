@@ -56,6 +56,7 @@ import fr.inrialpes.exmo.ontosim.string.StringDistances;
  */
 
 public class NameAndPropertyAlignment extends DistanceAlignment implements AlignmentProcess {
+    final static Logger logger = LoggerFactory.getLogger(NameAndPropertyAlignment.class);
 
     private HeavyLoadedOntology<Object> honto1 = null;
     private HeavyLoadedOntology<Object> honto2 = null;
@@ -113,7 +114,7 @@ public class NameAndPropertyAlignment extends DistanceAlignment implements Align
                 proplist2.add(prop);
             }
         } catch (OntowrapException e) {
-            e.printStackTrace();
+            logger.error("FATAL error", e);
         }
     }
 

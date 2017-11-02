@@ -63,7 +63,7 @@ public class OnlineAlign {
     public OnlineAlign( String htmlPort, String host   )  {
 	try {
 	    SOAPUrl = new URL( "http://" + host + ":" + htmlPort + "/aserv" );
-	} catch ( Exception ex ) { ex.printStackTrace(); };
+	} catch ( Exception ex ) { logger.error("FATAL error", ex);}
 	fac.setValidating(false);
 	fac.setNamespaceAware(false);
 	try { BUILDER = fac.newDocumentBuilder(); }
@@ -211,9 +211,9 @@ public class OnlineAlign {
 	try {
 	    domMessage = BUILDER.parse( new ByteArrayInputStream( answer.getBytes()) );
 	} catch  ( IOException ioex ) {
-	    ioex.printStackTrace();
+		logger.error("FATAL error", ioex);
 	} catch  ( SAXException saxex ) {
-	    saxex.printStackTrace();
+		logger.error("FATAL error", saxex);
 	}
 	return getTagFromSOAP( domMessage, xpath );
     }
@@ -319,7 +319,7 @@ public class OnlineAlign {
 	    }
 	} catch  (Exception ex) {
 	    //connected= false; 
-	    ex.printStackTrace() ; return null;
+		logger.error("FATAL error", ex); return null;
 	}
 	return answer;
     }
@@ -352,7 +352,7 @@ public class OnlineAlign {
 	    	//connected = true;
 		} catch  (Exception ex) {
 	    	//connected = false;
-	    	ex.printStackTrace();
+			logger.error("FATAL error", ex);
 		} finally {
 			if (fi != null) {
 				 try {

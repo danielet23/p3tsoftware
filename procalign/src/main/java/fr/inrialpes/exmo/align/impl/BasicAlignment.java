@@ -41,6 +41,7 @@ import java.util.*;
  */
 
 public class BasicAlignment implements Alignment {
+	final static Logger logger = LoggerFactory.getLogger(BasicAlignment.class);
 
     public void accept( AlignmentVisitor visitor ) throws AlignmentException {
 	visitor.visit( this );
@@ -810,7 +811,7 @@ public class BasicAlignment implements Alignment {
     public Object clone() {
 	BasicAlignment align;
 	try { align = createNewAlignment( onto1, onto2 ); }
-	catch (AlignmentException ae) { ae.printStackTrace(); return null; }
+	catch (AlignmentException ae) { logger.error("FATAL error", ae); return null; }
 	align.setType( getType() );
 	align.setLevel( getLevel() );
 	align.setFile1( getFile1() );
@@ -822,7 +823,7 @@ public class BasicAlignment implements Alignment {
 	    align.setXNamespace( label, getXNamespace( label ) );
 	}
 	try { align.ingest( this ); }
-	catch (AlignmentException ex) { ex.printStackTrace(); }
+	catch (AlignmentException ex) { logger.error("FATAL error", ex); }
 	return align;
     }
 

@@ -39,6 +39,7 @@ import java.util.Set;
  * Class MyMatcher
  */
 public class MyMatcher implements Iterable<Object[]> {
+	final static Logger logger = LoggerFactory.getLogger(MyMatcher.class);
 
     Set<Object[]> result;
 
@@ -62,7 +63,7 @@ public class MyMatcher implements Iterable<Object[]> {
 		result.add( r );
 	    }
 	} catch (AlignmentException ex) {
-	    ex.printStackTrace();
+		logger.error("FATAL error", ex);
 	}
     }
 

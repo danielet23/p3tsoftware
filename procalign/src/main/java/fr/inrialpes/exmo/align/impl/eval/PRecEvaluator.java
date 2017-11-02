@@ -49,6 +49,7 @@ import java.net.URI;
  */
 
 public class PRecEvaluator extends BasicEvaluator implements Evaluator {
+	final static Logger logger = LoggerFactory.getLogger(PRecEvaluator.class);
 
     protected double precision = 1.;
 
@@ -171,7 +172,7 @@ public class PRecEvaluator extends BasicEvaluator implements Evaluator {
 	try {
 	    result += "    <dt>input1</dt><dd rel=\""+Namespace.ATLMAP.shortCut+":input1\" href=\""+align1.getOntology1URI()+"\">"+align1.getOntology1URI()+"</dd>";
 	    result += "    <dt>input2</dt><dd rel=\""+Namespace.ATLMAP.shortCut+":input2\" href=\""+align1.getOntology2URI()+"\">"+align1.getOntology2URI()+"</dd>";
-	} catch (AlignmentException e) { e.printStackTrace(); };
+	} catch (AlignmentException e) { logger.error("FATAL error", e); };
 	// Other missing items (easy to get)
 	// result += "    <"+Namespace.ATLMAP.shortCut+":falseNegative>");
 	// result += "    <"+Namespace.ATLMAP.shortCut+":falsePositive>");
@@ -198,7 +199,7 @@ return result;
 	try {
 	    writer.println("    <"+Namespace.ATLMAP.shortCut+":input1 "+SyntaxElement.RDF_RESOURCE.print()+"=\""+align1.getOntology1URI()+"\"/>");
 	    writer.println("    <"+Namespace.ATLMAP.shortCut+":input2 "+SyntaxElement.RDF_RESOURCE.print()+"=\""+align1.getOntology2URI()+"\"/>");
-	} catch (AlignmentException e) { e.printStackTrace(); };
+	} catch (AlignmentException e) { logger.error("FATAL error", e); };
 	// Other missing items (easy to get)
 	// writer.println("    <"+Namespace.ATLMAP.shortCut+":falseNegative>");
 	// writer.println("    <"+Namespace.ATLMAP.shortCut+":falsePositive>");

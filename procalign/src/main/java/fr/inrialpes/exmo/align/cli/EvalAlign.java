@@ -74,6 +74,7 @@ $Id: EvalAlign.java 1805 2013-02-08 14:25:15Z euzenat $
     */
 
 public class EvalAlign {
+	final static Logger logger = LoggerFactory.getLogger(EvalAlign.class);
 
     public static void testEvalAlign(String[] args) {
 	new EvalAlign().run( args );
@@ -127,7 +128,7 @@ public class EvalAlign {
 	    // Compare
 		compare(eval, params, totry, cont);
 	}
-	} catch ( Exception ex ) { ex.printStackTrace(); }
+	} catch ( Exception ex ) { logger.error("FATAL error", ex); }
 
 	setOutputFile(cont, eval);
     }
@@ -141,7 +142,7 @@ public class EvalAlign {
 			aparser.initAlignment( null );
 			cont.align2 = aparser.parse( cont.alignName2 );
 			if ( cont.debug > 0 ) System.err.println(" Alignment structure2 parsed");
-		} catch ( Exception ex ) { ex.printStackTrace(); }
+		} catch ( Exception ex ) { logger.error("FATAL error", ex); }
 	}
 
     private boolean compare(Evaluator eval, Properties params, boolean totry, Container cont) throws AlignmentException {
@@ -172,15 +173,15 @@ public class EvalAlign {
 			java.lang.reflect.Constructor evaluatorConstructor = evaluatorClass.getConstructor(cparams);
 			eval = (Evaluator)evaluatorConstructor.newInstance(mparams);
 		} catch (ClassNotFoundException ex) {
-			ex.printStackTrace();
+			logger.error("FATAL error", ex);
 		} catch (InstantiationException ex) {
-			ex.printStackTrace();
+			logger.error("FATAL error", ex);
 		} catch (InvocationTargetException ex) {
-			ex.printStackTrace();
+			logger.error("FATAL error", ex);
 		} catch (IllegalAccessException ex) {
-			ex.printStackTrace();
+			logger.error("FATAL error", ex);
 		} catch (NoSuchMethodException ex) {
-			ex.printStackTrace();
+			logger.error("FATAL error", ex);
 			usage();
 		}
 		} else { eval = new PRecEvaluator( cont.align1, cont.align2 ); }
@@ -203,7 +204,7 @@ public class EvalAlign {
 							new OutputStreamWriter( stream, "UTF-8" )), true);
 			eval.write( writer );
 		} catch ( IOException ex ) {
-			ex.printStackTrace();
+			logger.error("FATAL error", ex);
 		} finally {
 			closeWriterResource(writer);
 			closeStreamResource(stream);

@@ -1,6 +1,5 @@
 package example.ws.matcher;
 
-import java.net.URI;
 import java.util.Properties;
 
 import org.semanticweb.owl.align.Alignment;

@@ -194,7 +194,7 @@ public class RDFParser {
 		try { alignment.addAlignCell( parseCell( stmt.getResource() ) ); }
 		catch ( AlignmentException ae ) {
 			System.err.println( "Error "+ae );
-			ae.printStackTrace();
+			logger.error("FATAL error", ae);
 		}
 	}
 
@@ -358,7 +358,7 @@ public class RDFParser {
 			try { cell.addTransformation( parseTransformation( stmt.getResource() ) ); }
 			catch ( AlignmentException ae ) {
 				System.err.println( "Error "+ae );
-				ae.printStackTrace();
+				logger.error("FATAL error", ae);
 			}
 		}
 	}
@@ -571,7 +571,7 @@ public class RDFParser {
 				try {
 					clexpr.add( parseClass( coll.getProperty( RDF.first ).getResource() ) );
 				} catch (AlignmentException e) {
-					e.printStackTrace();
+					logger.error("FATAL error", e);
 				}
 				coll = coll.getProperty( RDF.rest ).getResource(); // MUSTCHECK
 				isEqual = RDF.nil.getURI().equals( coll.getURI() );
@@ -1151,7 +1151,7 @@ public class RDFParser {
             u = new URI( ((Resource)node).getProperty( (Property)SyntaxElement.ETYPE.resource ).getLiteral().getString() );
         } catch (URISyntaxException urisex) {
             //throw new AlignmentException( "Incorect URI for edoal:type : "+ ((Resource)node).getProperty( (Property)SyntaxElement.TYPE.resource ).getLiteral().getString() );
-            urisex.printStackTrace();
+			logger.error("FATAL error", urisex);
         }
     }
 

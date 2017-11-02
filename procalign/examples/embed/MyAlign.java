@@ -33,10 +33,8 @@ import org.semanticweb.owl.align.Evaluator;
 
 // Align API Implementation
 import fr.inrialpes.exmo.align.impl.BasicParameters;
-import fr.inrialpes.exmo.align.parser.AlignmentParser;
 import fr.inrialpes.exmo.align.impl.method.SubsDistNameAlignment;
 import fr.inrialpes.exmo.align.impl.method.SMOANameAlignment;
-import fr.inrialpes.exmo.align.impl.method.NameAndPropertyAlignment;
 import fr.inrialpes.exmo.align.impl.method.EditDistNameAlignment;
 import fr.inrialpes.exmo.align.impl.eval.PRecEvaluator;
 import fr.inrialpes.exmo.align.impl.renderer.SWRLRendererVisitor;
@@ -56,6 +54,7 @@ java -cp .:../../lib/procalign.jar MyAlign
  */
 
 public class MyAlign {
+	final static Logger logger = LoggerFactory.getLogger(MyAlign.class);
 
     public static void testMyAlign(String[] args) {
 	try {
@@ -82,6 +81,6 @@ public class MyAlign {
 	    if ( ((PRecEvaluator)E).getPrecision() > .6 ) A3.render(V);
 	    pw.flush(); 
 	    pw.close(); // necessary when the program is really embedded
-	} catch (Exception e) { e.printStackTrace(); };
+	} catch (Exception e) { logger.error("FATAL error", e); }
     }
 }

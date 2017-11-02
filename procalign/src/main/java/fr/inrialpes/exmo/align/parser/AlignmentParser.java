@@ -29,7 +29,6 @@ import java.net.URISyntaxException;
 import java.util.Hashtable;
 
 import org.semanticweb.owl.align.Alignment;
-import org.semanticweb.owl.align.Cell;
 import org.semanticweb.owl.align.AlignmentException;
 
 import fr.inrialpes.exmo.align.impl.URIAlignment;
@@ -46,6 +45,7 @@ import fr.inrialpes.exmo.align.impl.URIAlignment;
  */
 
 public class AlignmentParser {
+	final static Logger logger = LoggerFactory.getLogger(AlignmentParser.class);
 
     /**
      * level of debug/warning information
@@ -126,7 +126,7 @@ public class AlignmentParser {
 	} catch ( Exception e ) {
 	    if ( debugMode > 0 ) {
 		System.err.println("XMLParser failed to parse alignment (INFO)");
-		e.printStackTrace();
+			logger.error("FATAL error", e);
 	    }
 	    try {
 		if ( !embedded ) {

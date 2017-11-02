@@ -16,6 +16,7 @@ import java.util.Collection;
  * Transforms a URIAlignment to a ObjectAlignment
  */
 public class AlignmentTransformer {
+    final static Logger logger = LoggerFactory.getLogger(AlignmentTransformer.class);
 
     public static ObjectAlignment toObjectAlignment(Alignment al) throws AlignmentException {
         if (al instanceof ObjectAlignment) {
@@ -33,7 +34,7 @@ public class AlignmentTransformer {
         try {
             ob = t.asObjectAlignment(al);
         } catch (OWLOntologyChangeException e) {
-            e.printStackTrace();
+            logger.error("FATAL error", e);
         }
         return ob;
     }
@@ -122,7 +123,7 @@ public class AlignmentTransformer {
         try {
             this.asObjectAlignmentDefaultInner(al, alignment, obj1, obj2, o1, o2);
         } catch (OntowrapException e) {
-            e.printStackTrace();
+            logger.error("FATAL error", e);
         }
 
         return alignment;

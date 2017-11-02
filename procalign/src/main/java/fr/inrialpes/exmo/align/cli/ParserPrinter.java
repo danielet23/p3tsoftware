@@ -70,10 +70,11 @@ $Id: ParserPrinter.java 1827 2013-03-07 22:44:05Z euzenat $
     */
 
 public class ParserPrinter {
+	final static Logger logger = LoggerFactory.getLogger(ParserPrinter.class);
 
     public static void testParserPrinter(String[] args) {
 	try { new ParserPrinter().run( args ); }
-	catch (Exception ex) { ex.printStackTrace(); };
+	catch (Exception ex) { logger.error("FATAL error", ex); }
     }
 
     public void run(String[] args) throws Exception {
@@ -145,7 +146,7 @@ public class ParserPrinter {
 	try {
         parser(cont);
 	} catch (Exception ex) {
-	    ex.printStackTrace();
+		logger.error("FATAL error", ex);
 	}
     }
 
@@ -314,7 +315,7 @@ public class ParserPrinter {
 			//writer = new PrintStream(new FileOutputStream(filename));
 			try {
 				stream = new FileOutputStream(cont.filename);
-			} catch (Exception ex) {ex.printStackTrace();}
+			} catch (Exception ex) {logger.error("FATAL error", ex);}
 			finally {
 				if (stream != null) {
 					try {

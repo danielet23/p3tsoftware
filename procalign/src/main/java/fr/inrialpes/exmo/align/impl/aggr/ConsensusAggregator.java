@@ -150,7 +150,7 @@ public class ConsensusAggregator extends BasicAlignment {
 		}
 	    }
 	} catch (Exception ex) {
-	    ex.printStackTrace();
+		logger.error("FATAL error", ex);
 	}
 	return null;
     }

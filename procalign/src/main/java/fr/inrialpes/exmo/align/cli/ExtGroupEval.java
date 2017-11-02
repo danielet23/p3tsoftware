@@ -90,6 +90,7 @@ $Id: ExtGroupEval.java 1701 2012-03-10 15:54:01Z euzenat $
     */
 
 public class ExtGroupEval {
+	final static Logger logger = LoggerFactory.getLogger(ExtGroupEval.class);
 
     Properties params = null;
     String filename = null;
@@ -106,7 +107,7 @@ public class ExtGroupEval {
 
     public static void testExtGroupEval(String[] args) {
 	try { new ExtGroupEval().run( args ); }
-	catch (Exception ex) { ex.printStackTrace(); };
+	catch (Exception ex) { logger.error("FATAL error", ex); }
     }
 
     public void run(String[] args) throws Exception {
@@ -274,7 +275,7 @@ public class ExtGroupEval {
 	try {
 	    OntologyFactory.clear();
 	} catch ( OntowrapException owex ) { // only report
-	    owex.printStackTrace();
+		logger.error("FATAL error", owex);
 	}
 
 	if ( ok == true ) return result;
@@ -302,7 +303,7 @@ public class ExtGroupEval {
 	    eval.eval( params ) ;
 	} catch (Exception ex) {
 	    if ( debug > 1 ) {
-		ex.printStackTrace();
+			logger.error("FATAL error", ex);
 	    } else {
 		System.err.println("ExtGroupEval: "+ex);
 		System.err.println(alignName1+ " - "+alignName2 );
@@ -361,7 +362,7 @@ public class ExtGroupEval {
 	    writer.println("NaN: division per zero, likely due to empty alignent.</small></p>");
 	    writer.println("</body></html>");
 	} catch (Exception ex) {
-	    ex.printStackTrace();
+		logger.error("FATAL error", ex);
 	} finally {
 	    writer.flush();
 	    writer.close();

@@ -23,9 +23,7 @@ package fr.inrialpes.exmo.align.impl;
 import java.util.Set;
 import java.net.URI;
 
-import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentException;
-import org.semanticweb.owl.align.AlignmentVisitor;
 import org.semanticweb.owl.align.Cell;
 import org.semanticweb.owl.align.Relation;
 

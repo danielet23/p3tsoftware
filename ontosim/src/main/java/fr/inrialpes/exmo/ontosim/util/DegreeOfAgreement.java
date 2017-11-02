@@ -30,6 +30,7 @@ import java.util.StringTokenizer;
  */
 public class DegreeOfAgreement {
 
+	final static Logger logger = LoggerFactory.getLogger(DegreeOfAgreement.class);
 
     public static void testDegreeOfAgreement(String[] args) {
 		if (args[0].equals("-r")) {
@@ -100,10 +101,10 @@ public class DegreeOfAgreement {
 					//end of computation one degree_matrix comparing degradated vs. nondegradated variants of measures
 				}
 				catch(IOException e) {
-					e.printStackTrace();
+					logger.error("FATAL error", e);
 				}
 				catch(Exception e) {
-					e.printStackTrace();
+					logger.error("FATAL error", e);;
 				} finally {
 					closeBufferedReader(in);
 					closePrintWriter(logMatrix);
@@ -217,7 +218,7 @@ public class DegreeOfAgreement {
 			//end of computation one degree_matrix
 		}
 		catch(IOException e) {
-			e.printStackTrace();
+			logger.error("FATAL error", e);
 		} finally {
 			closeBufferedReader(in);
 			closePrintWriter(logMatrix);

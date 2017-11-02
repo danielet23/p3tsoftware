@@ -49,6 +49,7 @@ import java.util.Properties;
  * SubClass JadeFIPAAServiceAgent
  */
 public class JadeFIPAAServiceAgent extends Agent {
+	final static Logger logger = LoggerFactory.getLogger(JadeFIPAAServiceAgent.class);
 
     private static final long serialVersionUID = 330;
 	public static final String SERVICE_NAME = "Alignment";
@@ -134,9 +135,9 @@ public class JadeFIPAAServiceAgent extends Agent {
 				}
 
 				catch (CodecException ce) {
-					ce.printStackTrace();
+					logger.error("FATAL error", ce);
 				} catch (OntologyException oe) {
-					oe.printStackTrace();
+					logger.error("FATAL error", oe);
 				}
 			} else {
 				block();

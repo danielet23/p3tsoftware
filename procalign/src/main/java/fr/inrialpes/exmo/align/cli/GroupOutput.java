@@ -124,6 +124,7 @@ But it is less informative than the above presentation.
  * class GroupOutput
  */
 public class GroupOutput {
+	final static Logger logger = LoggerFactory.getLogger(GroupOutput.class);
 
     static int SIZE = 16;// Nb of cells = 2^ = 16
     static int cellSpec[][] = { {101}, //liph=0
@@ -156,7 +157,7 @@ public class GroupOutput {
 
     public static void testGroupOutput(String[] args) {
 	try { new GroupOutput().run( args ); }
-	catch (Exception ex) { ex.printStackTrace(); };
+	catch (Exception ex) { logger.error("FATAL error", ex); }
     }
 
     public void run(String[] args) throws Exception {
@@ -245,7 +246,7 @@ public class GroupOutput {
 		} else {
 			try {
 				stream = new FileOutputStream(outFile);
-			} catch (Exception ex) {ex.printStackTrace();}
+			} catch (Exception ex) {logger.error("FATAL error", ex);}
 			finally {
 				this.runIFMethodBInner(stream);
 			}
@@ -377,7 +378,7 @@ public class GroupOutput {
 	try {
 	    OntologyFactory.clear();
 	} catch ( OntowrapException owex ) { // only report
-	    owex.printStackTrace();
+		logger.error("FATAL error", owex);
 	}
 	return result/(double)nbtests;
     }

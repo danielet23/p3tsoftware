@@ -33,6 +33,7 @@ import java.util.Properties;
  * class BenchmarkGenerator
  */
 public class BenchmarkGenerator extends TestSet {
+	final static Logger logger = LoggerFactory.getLogger(BenchmarkGenerator.class);
 	/**
 	 *
 	 * @param params
@@ -53,7 +54,7 @@ public class BenchmarkGenerator extends TestSet {
 	try {
 	    if ( hard != null && !hard.equals("") ) incr = Float.parseFloat( hard );
 	} catch ( Exception ex ) {
-	    ex.printStackTrace(); // continue with the default
+		logger.error("FATAL error", ex); // continue with the default
 	}
 	String max = params.getProperty( "maximum" );
 

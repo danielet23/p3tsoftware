@@ -185,7 +185,7 @@ public abstract class MatrixMeasure implements Similarity {
 		initializeMethodD(nbind1, nbind2, onto1, onto2, indlist1, indlist2);
 	    //System.err.println("  >> NbInd: "+nbind1+"/"+nbind2 );
 	    indmatrix = new double[nbind1+1][nbind2+1];
-	} catch (OntowrapException e) { e.printStackTrace(); };
+	} catch (OntowrapException e) { logger.error("FATAL error", e); };
     }
 
     public static void computeMethodA(LoadedOntology onto1, LoadedOntology onto2, HashMap<Object,Integer> classlist1, HashMap<Object,Integer> classlist2,
@@ -239,7 +239,7 @@ public abstract class MatrixMeasure implements Similarity {
 		}
 	    }
 	    // What is caught is really Exceptions
-	} catch (Exception e) { e.printStackTrace(); }
+	} catch (Exception e) { logger.error("FATAL error", e); }
     }
 
     public double getIndividualSimilarity( Object i1, Object i2 ){
@@ -274,7 +274,7 @@ public abstract class MatrixMeasure implements Similarity {
 		}
 		System.out.println("\\\\");
 	    }
-	} catch (OntowrapException e) { e.printStackTrace(); };
+	} catch (OntowrapException e) { logger.error("FATAL error", e); };
 	System.out.println("\n\\end{tabular}");
     }
 

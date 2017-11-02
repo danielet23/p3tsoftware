@@ -23,7 +23,6 @@ package fr.inrialpes.exmo.align.plugin.neontk;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.PrintStream;// Used for debugging
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URI;
@@ -161,7 +160,7 @@ public class OfflineAlign {
 	    com.ontoprise.ontostudio.owl.model.OWLModel model = com.ontoprise.ontostudio.owl.model.OWLModelFactory.getOWLModel( ontoURI, project );
 	    ontology = model.getOntology();
 	} catch ( org.neontoolkit.core.exception.NeOnCoreException e ) {
-	    e.printStackTrace();
+		logger.error("FATAL error", e);
 	    //throw new org.semanticweb.owl.align.AlignmentException("Cannot load " + uri, e);
 	    // Let's try to load it from the web...
 	}
@@ -219,7 +218,7 @@ public class OfflineAlign {
 	    //clonedA1.render(owlV);
 	    owlF.flush();
 	    owlF.close();	  
-	} catch ( Exception ex ) { ex.printStackTrace();}
+	} catch ( Exception ex ) { logger.error("FATAL error", ex);}
 	finally {
 
         if (rdfF != null) {
@@ -283,7 +282,7 @@ public class OfflineAlign {
 	       AlignView.alignmentTable.put( alignFolder.getAbsolutePath() + File.separator + key , 
 					     parser.parse( alignFolder.getAbsolutePath() + File.separator  + v.get(i)) );
 	   }
-       } catch ( Exception ex ) { ex.printStackTrace();};
+       } catch ( Exception ex ) { logger.error("FATAL error", ex);}
    }
 
 	/**

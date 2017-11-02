@@ -36,6 +36,7 @@ import java.util.Vector;
  */
 public class HLClassImpl<E> extends HLEntityImpl<E> implements HLClass<E> {
 
+	final static Logger logger = LoggerFactory.getLogger(HLClassImpl.class);
     protected HLClassImpl(HeavyLoadedOntology<E> ont, E e) {
 	super(ont, e);
 	// TODO Auto-generated constructor stub
@@ -79,7 +80,7 @@ public class HLClassImpl<E> extends HLEntityImpl<E> implements HLClass<E> {
 	if (superclasses.get(idx)==null || superclasses.get(idx).get()==null) 
 	    try {
 		superclasses.set(idx, new WeakReference<Set<HLClass<E>>>((Set<HLClass<E>>) fact.getFrom((Set<E>)onto.getSuperClasses(getObject(), local, asserted, named))));
-	    } catch ( OntowrapException owex ) { owex.printStackTrace(); }		
+	    } catch ( OntowrapException owex ) { logger.error("FATAL error", owex); }
 	return superclasses.get(idx).get();
     }
     
@@ -95,7 +96,7 @@ public class HLClassImpl<E> extends HLEntityImpl<E> implements HLClass<E> {
 	if (properties.get(idx)==null  || properties.get(idx).get()==null) 
 	    try {
 		properties.set(idx, new WeakReference<Set<HLProperty<E>>>((Set<HLProperty<E>>)fact.getFrom((Set<E>)onto.getProperties(getObject(), local, asserted, named))));
-	    } catch ( OntowrapException owex ) { owex.printStackTrace(); }
+	    } catch ( OntowrapException owex ) { logger.error("FATAL error", owex); }
 	return properties.get(idx).get();
     }
     
@@ -111,7 +112,7 @@ public class HLClassImpl<E> extends HLEntityImpl<E> implements HLClass<E> {
 	if (dataproperties.get(idx)==null  || dataproperties.get(idx).get()==null) 
 	    try {
 		dataproperties.set(idx, new WeakReference<Set<HLProperty<E>>>((Set<HLProperty<E>>)fact.getFrom((Set<E>)onto.getDataProperties(getObject(), local, asserted, named))));
-	    } catch ( OntowrapException owex ) { owex.printStackTrace(); }
+	    } catch ( OntowrapException owex ) { logger.error("FATAL error", owex); }
 	return dataproperties.get(idx).get();
     }
     
@@ -127,7 +128,7 @@ public class HLClassImpl<E> extends HLEntityImpl<E> implements HLClass<E> {
 	if (objectproperties.get(idx)==null  || objectproperties.get(idx).get()==null) 
 	    try{
 		objectproperties.set(idx, new WeakReference<Set<HLProperty<E>>>((Set<HLProperty<E>>)fact.getFrom((Set<E>)onto.getObjectProperties(getObject(), local, asserted, named))));
-	    } catch ( OntowrapException owex ) { owex.printStackTrace(); }
+	    } catch ( OntowrapException owex ) { logger.error("FATAL error", owex); }
 	return objectproperties.get(idx).get();
     }
     
@@ -144,7 +145,7 @@ public class HLClassImpl<E> extends HLEntityImpl<E> implements HLClass<E> {
 	if (instances.get(idx)==null  || instances.get(idx).get()==null)
 	    try {
 		instances.set(idx, new WeakReference<Set<HLIndividual<E>>>((Set<HLIndividual<E>>)fact.getFrom((Set<E>)onto.getInstances(getObject(), local, asserted, named))));
-	    } catch ( OntowrapException owex ) { owex.printStackTrace(); }
+	    } catch ( OntowrapException owex ) { logger.error("FATAL error", owex); }
 	return instances.get(idx).get();
     }
 }

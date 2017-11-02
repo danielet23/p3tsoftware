@@ -44,6 +44,7 @@ import fr.inrialpes.exmo.align.impl.MatrixMeasure;
  */
 
 public class StringDistAlignment extends DistanceAlignment implements AlignmentProcess {
+	final static Logger logger = LoggerFactory.getLogger(StringDistAlignment.class);
     
     Method dissimilarity = null;
     String methodName = "equalDistance";
@@ -102,7 +103,7 @@ public class StringDistAlignment extends DistanceAlignment implements AlignmentP
 	    Class[] mParams = { sClass, sClass };
 	    dissimilarity = Class.forName("fr.inrialpes.exmo.ontosim.string.StringDistances").getMethod( methodName, mParams );
 	} catch (ClassNotFoundException e) {
-	    e.printStackTrace(); // never happens
+		logger.error("FATAL error", e); // never happens
 	} catch (NoSuchMethodException e) {
 	    throw new AlignmentException( "Unknown method for StringDistAlignment : "+params.getProperty("stringFunction"), e );
 	}

@@ -34,6 +34,7 @@ import java.lang.reflect.InvocationTargetException;
  * abstract class OntologyFactory
  */
 public abstract class OntologyFactory {
+	final static Logger logger = LoggerFactory.getLogger(OntologyFactory.class);
 
     public static final int ANY = 0;
     public static final int DIRECT = 1;
@@ -90,7 +91,7 @@ public abstract class OntologyFactory {
 		skos.add( "fr.inrialpes.exmo.ontowrap.skosapi.SKOSOntologyFactory" );
 
 	    } catch ( URISyntaxException uriex ) {
-		uriex.printStackTrace(); // should never occur
+			logger.error("FATAL error", uriex); // should never occur
 	    }
 	}
 	return factories.get( formalism );
@@ -137,15 +138,15 @@ public abstract class OntologyFactory {
 	    Object[] mparams = {};
 	    of = (OntologyFactory)ofConstructor.newInstance(mparams);
 	} catch (ClassNotFoundException cnfex ) {
-	    cnfex.printStackTrace(); // better raise errors
+		logger.error("FATAL error", cnfex); // better raise errors
 	} catch (NoSuchMethodException nsmex) {
-	    nsmex.printStackTrace();
+		logger.error("FATAL error", nsmex);
 	} catch (InstantiationException ieex) {
-	    ieex.printStackTrace();
+		logger.error("FATAL error", ieex);
 	} catch (IllegalAccessException iaex) {
-	    iaex.printStackTrace();
+		logger.error("FATAL error", iaex);
 	} catch (InvocationTargetException itex) {
-	    itex.printStackTrace();
+		logger.error("FATAL error", itex);
 	}
 	instances.put( apiName, of );
 	return of;

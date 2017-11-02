@@ -20,19 +20,7 @@
 
 package fr.inrialpes.exmo.align.service;
 
-import fr.inrialpes.exmo.queryprocessor.QueryProcessor;
-import fr.inrialpes.exmo.queryprocessor.Result;
-import fr.inrialpes.exmo.queryprocessor.Type;
-
-import jdk.internal.org.objectweb.asm.Handle;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import gnu.getopt.LongOpt;
-import gnu.getopt.Getopt;
-
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Properties;
 import java.io.PrintStream;
 

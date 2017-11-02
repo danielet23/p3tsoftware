@@ -24,20 +24,14 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.NoSuchElementException;
 
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.ontology.Ontology;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-
-import fr.inrialpes.exmo.ontowrap.LoadedOntology;
 import fr.inrialpes.exmo.ontowrap.OntologyFactory;
-import fr.inrialpes.exmo.ontowrap.OntologyCache;
 import fr.inrialpes.exmo.ontowrap.OntowrapException;
 
 /**
  *class JENAOntologyFactory
  */
 public class JENAOntologyFactory extends OntologyFactory {
+	final static Logger logger = LoggerFactory.getLogger(JENAOntologyFactory.class);
 
     private static URI formalismUri = null;
     private static String formalismId = "OWL1.0";
@@ -48,7 +42,7 @@ public class JENAOntologyFactory extends OntologyFactory {
 	cache = new OntologyCache<JENAOntology>();
 	try { 
 	    formalismUri = new URI("http://www.w3.org/2002/07/owl#");
-	} catch (URISyntaxException ex) { ex.printStackTrace(); } // should not happen
+	} catch (URISyntaxException ex) { logger.error("FATAL error", ex); } // should not happen
     }
 
 	/**

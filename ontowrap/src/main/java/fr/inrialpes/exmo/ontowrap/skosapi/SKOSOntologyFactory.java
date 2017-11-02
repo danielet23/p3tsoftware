@@ -22,16 +22,8 @@ package fr.inrialpes.exmo.ontowrap.skosapi;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.NoSuchElementException;
 
-import org.semanticweb.skosapibinding.SKOSManager;
-import org.semanticweb.skos.SKOSCreationException;
-import org.semanticweb.skos.SKOSDataset;
-import org.semanticweb.skos.SKOSDataFactory;
-
-import fr.inrialpes.exmo.ontowrap.LoadedOntology;
 import fr.inrialpes.exmo.ontowrap.OntologyFactory;
-import fr.inrialpes.exmo.ontowrap.OntologyCache;
 import fr.inrialpes.exmo.ontowrap.OntowrapException;
 
 /**
@@ -39,6 +31,7 @@ import fr.inrialpes.exmo.ontowrap.OntowrapException;
  */
 
 public class SKOSOntologyFactory extends OntologyFactory {
+	final static Logger logger = LoggerFactory.getLogger(SKOSOntologyFactory.class);
 
     private static URI formalismUri = null;
     private static String formalismId = "SKOS1.0";
@@ -51,7 +44,7 @@ public class SKOSOntologyFactory extends OntologyFactory {
 	cache = new OntologyCache<SKOSThesaurus>();
 	try { 
 	    formalismUri = new URI("http://www.w3.org/2004/02/skos/core#");
-	} catch (URISyntaxException ex) { ex.printStackTrace(); } // should not happen
+	} catch (URISyntaxException ex) { logger.error("FATAL error", ex); } // should not happen
 	try {
 	    manager = new SKOSManager();
 	} catch (SKOSCreationException sce) {

@@ -44,6 +44,7 @@ import fr.inrialpes.exmo.ontosim.util.measures.CachedMeasure;
  * class IterativeNodeSim
  */
 public class IterativeNodeSim extends CachedMeasure<Node> {
+	final static Logger logger = LoggerFactory.getLogger(IterativeNodeSim.class);
 
     private Model m1;
     private Model m2;
@@ -92,7 +93,7 @@ public class IterativeNodeSim extends CachedMeasure<Node> {
 	    t2.join();
 	} catch (InterruptedException e) {
 	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+		logger.error("FATAL error", e);
 	}
 		
 	compute(ssim,epsilon);
@@ -191,7 +192,7 @@ public class IterativeNodeSim extends CachedMeasure<Node> {
 			t1.join();t2.join();t3.join();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("FATAL error", e);
 		}
 	
 	//Compute literal sims

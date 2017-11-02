@@ -34,6 +34,7 @@ import java.net.URI;
  * @param <O>
  */
 public class MeasureFromFile<O> implements Measure<O> {
+    final static Logger logger = LoggerFactory.getLogger(MeasureFromFile.class);
 
     String measureName;
     public HalfMatrixDouble<O> values = new HalfMatrixDouble<O>();
@@ -61,7 +62,7 @@ public class MeasureFromFile<O> implements Measure<O> {
     		    Double.valueOf(lineTab[index+2]).doubleValue());
             line=br.readLine();
     	}
-    } catch (Exception ex) {ex.printStackTrace();}
+    } catch (Exception ex) {logger.error("FATAL error", ex);}
     finally {
     	if (br != null) {
             try {
@@ -103,7 +104,7 @@ public class MeasureFromFile<O> implements Measure<O> {
     	    }
             line=br.readLine();
     	}
-    } catch (Exception ex) {ex.printStackTrace();}
+    } catch (Exception ex) {logger.error("FATAL error", ex);}
     finally {
     	if (br != null) {
             try {

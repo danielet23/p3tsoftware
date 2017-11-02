@@ -26,7 +26,6 @@
 */
 package fr.inrialpes.exmo.align.cli;
 
-import com.sun.org.apache.xalan.internal.xsltc.cmdline.getopt.GetOpt;
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentException;
 import org.semanticweb.owl.align.AlignmentProcess;
@@ -93,7 +92,7 @@ final static Logger logger = LoggerFactory.getLogger(GroupAlign.class);
 
     public static void testGroupAlign(String[] args) {
 	try { new GroupAlign().run( args ); }
-	catch (Exception ex) { ex.printStackTrace(); };
+	catch (Exception ex) { logger.error("FATAL error", ex); }
     }
 
     public void run(String[] args) throws Exception {
@@ -205,7 +204,7 @@ final static Logger logger = LoggerFactory.getLogger(GroupAlign.class);
 	private void runSwitchInner(String arg, Getopt g){
 		if(arg!=null){
 			try { uri1 = new URI(g.getOptarg());
-			} catch (Exception e) { e.printStackTrace(); }
+			} catch (Exception e) { logger.error("FATAL error", e); }
 		}
 		else{uri1 = null;}
 	}
@@ -349,7 +348,7 @@ final static Logger logger = LoggerFactory.getLogger(GroupAlign.class);
 		try {
 			result.align(init, params); // add opts
 		} catch (AlignmentException e) {
-			e.printStackTrace();
+			logger.error("FATAL error", e);
 		}
 		long newTime = System.currentTimeMillis();
 		result.setExtension( Namespace.ALIGNMENT.uri, Annotations.TIME, Long.toString(newTime - time) );
@@ -368,7 +367,7 @@ final static Logger logger = LoggerFactory.getLogger(GroupAlign.class);
 		try {
 			result.render( renderer);
 		} catch (AlignmentException e) {
-			e.printStackTrace();
+			logger.error("FATAL error", e);
 		}
 		if (debug > 1) System.err.println(" Done..."+renderer+"\n");
 	}

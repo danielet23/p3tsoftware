@@ -85,6 +85,7 @@ class Pair {
  * class BatchMeasures
  */
 public class BatchMeasures {
+	final static Logger logger = LoggerFactory.getLogger(BatchMeasures.class);
 
     private final static String SEP=" & ";
     public final static REFilenameFilter filter=new REFilenameFilter(".*\\.((rdf)|(owl))");
@@ -161,7 +162,7 @@ public class BatchMeasures {
 		cont.br = null;
 		try {
 			addAlignment(cont, args);
-		} catch (Exception ex) {ex.printStackTrace();}
+		} catch (Exception ex) {logger.error("FATAL error", ex);}
 		finally {
 			closeBufferedReader(cont.br);
 		}
@@ -373,7 +374,7 @@ public class BatchMeasures {
 				caseAlignment(cont, m);
 			}
 			catch (OntoSimException e) {
-				e.printStackTrace();
+				logger.error("FATAL error", e);
 			}
 			line = cont.br.readLine();
 		}
@@ -431,7 +432,7 @@ public class BatchMeasures {
 			cont.logAppend.write(new Double(cont.threshold).toString());
 			cont.logAppend.write(SEP);
 
-		} catch (Exception ex) {ex.printStackTrace();}
+		} catch (Exception ex) {logger.error("FATAL error", ex);}
 		finally {
 			if (cont.logAppend != null) {
 				try {

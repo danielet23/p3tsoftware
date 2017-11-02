@@ -28,7 +28,6 @@ import java.util.Set;
 import java.net.URI;
 
 import org.semanticweb.owl.align.AlignmentException;
-import org.semanticweb.owl.align.AlignmentVisitor;
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.Cell;
 import org.semanticweb.owl.align.Relation;
@@ -284,7 +283,7 @@ final static Logger logger = LoggerFactory.getLogger(EDOALAlignment.class);
 		    }
 		}
 	    } catch ( AlignmentException aex ) {
-		aex.printStackTrace(); // continue to concert the rest
+			logger.error("FATAL error", aex); // continue to concert the rest
 	    } catch ( OntowrapException owex ) {
 		throw new AlignmentException( "Cannot dereference entity", owex );
 	    }
@@ -327,7 +326,7 @@ final static Logger logger = LoggerFactory.getLogger(EDOALAlignment.class);
 	align.setExtensions( convertExtension( "cloned", this.getClass().getName()+"#clone" ) );
 	try {
 	    align.ingest( this );
-	} catch (AlignmentException ex) { ex.printStackTrace(); }
+	} catch (AlignmentException ex) { logger.error("FATAL error", ex); }
 	return align;
     }
 

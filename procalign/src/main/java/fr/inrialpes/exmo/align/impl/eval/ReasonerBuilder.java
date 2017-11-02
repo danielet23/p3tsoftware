@@ -6,7 +6,6 @@ import fr.inrialpes.exmo.ontowrap.Ontology;
 import fr.inrialpes.exmo.ontowrap.OntowrapException;
 import fr.inrialpes.exmo.ontowrap.owlapi30.OWLAPI3Ontology;
 import org.semanticweb.HermiT.Reasoner;
-import org.semanticweb.owl.align.AlignmentException;
 import org.semanticweb.owl.align.Cell;
 import org.semanticweb.owl.align.Relation;
 import org.semanticweb.owlapi.apibinding.OWLManager;

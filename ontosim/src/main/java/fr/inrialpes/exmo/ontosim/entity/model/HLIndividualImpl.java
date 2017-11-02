@@ -35,6 +35,7 @@ import java.util.Vector;
  * @param <E>
  */
 public class HLIndividualImpl<E> extends HLEntityImpl<E> implements HLIndividual<E> {
+	final static Logger logger = LoggerFactory.getLogger(HLIndividualImpl.class);
 
 	/**
 	 *
@@ -61,7 +62,7 @@ public class HLIndividualImpl<E> extends HLEntityImpl<E> implements HLIndividual
 	if (classes.get(idx)==null  || classes.get(idx).get()==null) 
 	    try {
 		classes.set(idx, new SoftReference<Set<HLClass<E>>>((Set<HLClass<E>>)fact.getFrom((Set<E>)onto.getClasses(getObject(), local, asserted, named))));
-	    } catch ( OntowrapException owex ) { owex.printStackTrace(); }
+	    } catch ( OntowrapException owex ) { logger.error("FATAL error", ex); }
 	return classes.get(idx).get();
     }
 }

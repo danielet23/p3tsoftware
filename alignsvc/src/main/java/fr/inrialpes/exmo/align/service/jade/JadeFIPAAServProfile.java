@@ -40,6 +40,7 @@ import java.util.Properties;
  * Abstract Class?
  */
 public class JadeFIPAAServProfile implements AlignmentServiceProfile {
+	final static Logger logger = LoggerFactory.getLogger(JadeFIPAAServProfile.class);
 
 
 	private AgentContainer mc;
@@ -102,7 +103,7 @@ public class JadeFIPAAServProfile implements AlignmentServiceProfile {
 		new File("APDescription.txt").delete();
 		new File("MTPs-Main-Container.txt").delete();
 	    } catch (Exception e) {
-		e.printStackTrace();
+			logger.error("FATAL error", e);
 	    }
 	}
 	

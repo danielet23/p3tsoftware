@@ -46,6 +46,7 @@ import fr.inrialpes.exmo.ontosim.util.AlignPairsSimple;
  *  class OLAEntitySim
  */
 public class OLAEntitySim  extends OLAlignment implements Measure<Entity<OWLEntity>>  {
+	final static Logger logger = LoggerFactory.getLogger(OLAEntitySim.class);
 
 	private Map<OWLOntology,Set<OWLOntology>> alignedOnto;
 
@@ -110,7 +111,7 @@ public class OLAEntitySim  extends OLAlignment implements Measure<Entity<OWLEnti
 
 		} catch (AlignmentException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("FATAL error", e);
 		}
 
 	}

@@ -45,6 +45,7 @@ import java.net.URI;
  */
 
 public class DiffEvaluator extends BasicEvaluator implements Evaluator {
+	final static Logger logger = LoggerFactory.getLogger(DiffEvaluator.class);
 
     Set<Cell> truepositive;
     Set<Cell> falsenegative;
@@ -79,7 +80,7 @@ public class DiffEvaluator extends BasicEvaluator implements Evaluator {
 		this.diffInnerA(has);
 
 	} catch (Exception e) {
-	    e.printStackTrace(); 
+		logger.error("FATAL error", e);
 	}
 	
 	// False negative
@@ -90,7 +91,7 @@ public class DiffEvaluator extends BasicEvaluator implements Evaluator {
 		this.diffInnerB(has);
 
 	} catch (Exception e) {
-	    e.printStackTrace(); 
+		logger.error("FATAL error", e);
 	}
     }
 
@@ -213,7 +214,7 @@ public class DiffEvaluator extends BasicEvaluator implements Evaluator {
 	    }
 	    result += "</dd>\n";
 	} catch (AlignmentException e) {
-	    e.printStackTrace(); 
+		logger.error("FATAL error", e);
 	}
 	return result;  
     }
@@ -228,7 +229,7 @@ public class DiffEvaluator extends BasicEvaluator implements Evaluator {
 		writer.println("      <relation>"+c.getRelation().getRelation()+"</relation>");
 		writer.println("    </Cell>");
 	    } catch (AlignmentException e) {
-		e.printStackTrace(); 
+			logger.error("FATAL error", e);
 	    }
 	}
 	writer.println("  </"+what+">");

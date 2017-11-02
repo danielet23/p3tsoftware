@@ -33,6 +33,7 @@ import fr.inrialpes.exmo.ontowrap.OntowrapException;
  * class SKOSLiteOntologyFactory
  */
 public class SKOSLiteOntologyFactory extends OntologyFactory {
+	final static Logger logger = LoggerFactory.getLogger(SKOSLiteOntologyFactory.class);
 
     private URI formalismUri;
     private final static String formalismId = "SKOS1.0";
@@ -42,8 +43,8 @@ public class SKOSLiteOntologyFactory extends OntologyFactory {
 	try {
 	    formalismUri = new URI("http://www.w3.org/2004/02/skos/core#");
 	} catch (URISyntaxException e) {
-	    
-	    e.printStackTrace();
+
+		logger.error("FATAL error", e);
 	}
     }
 

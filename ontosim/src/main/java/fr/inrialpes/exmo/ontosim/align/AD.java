@@ -96,7 +96,7 @@ public abstract class AD extends AbstractAlignmentSpaceMeasure<HeavyLoadedOntolo
 		if (c1!=null) res.addAll(c1);
 	    } catch (AlignmentException e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+			logger.error("FATAL error", e);
 	    }
 	}
 	return res;
@@ -136,7 +136,7 @@ public abstract class AD extends AbstractAlignmentSpaceMeasure<HeavyLoadedOntolo
 	    network.invert();
 	} catch (AlignmentException e) {
 	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+		logger.error("FATAL error", e);
 	}
     }
 
@@ -374,12 +374,12 @@ public abstract class AD extends AbstractAlignmentSpaceMeasure<HeavyLoadedOntolo
 			if (c.getObject1AsURI().toString().equals(p1)) return true;
 		    } catch (AlignmentException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+				logger.error("FATAL error", e);
 		    }
 		}
 	    } catch (AlignmentException e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+			logger.error("FATAL error", e);
 	    }
 	return false;
 	/*Set<String> c=correspondences.get(p1);
@@ -402,7 +402,7 @@ public abstract class AD extends AbstractAlignmentSpaceMeasure<HeavyLoadedOntolo
 		result[i++] = getRModules(s, p, o, onto);
 	    } catch (OntowrapException e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+			logger.error("FATAL error", e);
 	    }
 	}
 	return result;
@@ -432,7 +432,7 @@ public abstract class AD extends AbstractAlignmentSpaceMeasure<HeavyLoadedOntolo
 			p = new URI(predFull).getFragment();
 		} catch (URISyntaxException e) {
 			logger.error("FATAL ERROR", e);
-			e.printStackTrace();
+			logger.error("FATAL error", e);
 		}
 
 		// case where the predicate is from OWL language but not in the table

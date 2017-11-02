@@ -53,6 +53,7 @@ import java.net.URI;
  */
 
 public abstract class GraphEvaluator {
+	final static Logger logger = LoggerFactory.getLogger(GraphEvaluator.class);
 
     /**
      * The resolution of the provided result: by STEP steps
@@ -192,7 +193,7 @@ public abstract class GraphEvaluator {
 		}
 	    }
 	} catch ( AlignmentException aex ) {
-	    aex.printStackTrace(); 
+		logger.error("FATAL error", aex);
 	}
 	return false;
     }

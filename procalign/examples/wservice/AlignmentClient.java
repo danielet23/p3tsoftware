@@ -27,10 +27,8 @@
 
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.Enumeration;
 import java.io.PrintStream;
 import java.io.File;
-import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -38,16 +36,10 @@ import java.io.FileInputStream;
 import java.net.URLConnection;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.MalformedURLException;
 import java.util.Properties;
-
-import gnu.getopt.LongOpt;
-import gnu.getopt.Getopt;
 
 import fr.inrialpes.exmo.align.parser.XMLParser;
 import fr.inrialpes.exmo.align.impl.URIAlignment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 
@@ -82,7 +74,7 @@ public class AlignmentClient {
 
     public static void testAlignmentClient(String[] args) {
 	try { new AlignmentClient().run( args ); }
-	catch ( Exception ex ) { ex.printStackTrace(); };
+	catch ( Exception ex ) { logger.error("FATAL error", ex); }
     }
     
     public void run(String[] args) throws Exception {
